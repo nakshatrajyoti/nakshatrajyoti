@@ -27,7 +27,6 @@ import {
    आपके Firebase Project का config
 ========================================================= */
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDRNf2BBo6KnjXCfXAaBvq58SDZ7cuVB9w",
   authDomain: "nakshatra-jyoti.firebaseapp.com",
