@@ -27,29 +27,15 @@ import {
    आपके Firebase Project का config
 ========================================================= */
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-
-  apiKey:
-    "AIzaSyDRnf2BBo6KnjXCfXAaBvq58SDZ7cuVB9w",
-
-  authDomain:
-    "nakshatra-jyoti.firebaseapp.com",
-
-  projectId:
-    "nakshatra-jyoti",
-
-  storageBucket:
-    "nakshatra-jyoti.firebasestorage.app",
-
-  messagingSenderId:
-    "8014602515",
-
-  appId:
-    "1:8014602515:web:848b96e6932d9070a53ae6",
-
-  measurementId:
-    "G-BYK2GJFDJ3"
-
+  apiKey: "AIzaSyDRNf2BBo6KnjXCfXAaBvq58SDZ7cuVB9w",
+  authDomain: "nakshatra-jyoti.firebaseapp.com",
+  projectId: "nakshatra-jyoti",
+  storageBucket: "nakshatra-jyoti.firebasestorage.app",
+  messagingSenderId: "8014602515",
+  appId: "1:8014602515:web:848b96e6932d9070a53ae6",
+  measurementId: "G-BYK2GJFJD3"
 };
 
 
