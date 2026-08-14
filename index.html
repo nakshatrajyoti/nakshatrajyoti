@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Nakshatra Jyoti</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- LANGUAGE SCREEN -->
+  <section id="languageScreen" class="screen">
+
+    <div class="language-card">
+
+      <div class="om">ॐ</div>
+
+      <div class="brand-name">
+        NAKSHATRA JYOTI
+      </div>
+
+      <h1>अपनी भाषा चुनें</h1>
+
+      <p>
+        आगे बढ़ने के लिए अपनी पसंद की भाषा चुनें।
+      </p>
+
+      <div class="languages">
+
+        <button class="language active">
+          <b>हिन्दी</b>
+          <span>Hindi</span>
+        </button>
+
+        <button class="language">
+          <b>English</b>
+          <span>English</span>
+        </button>
+
+        <button class="language">
+          <b>संस्कृतम्</b>
+          <span>Sanskrit</span>
+        </button>
+
+        <button class="language">
+          <b>বাংলা</b>
+          <span>Bengali</span>
+        </button>
+
+        <button class="language">
+          <b>मराठी</b>
+          <span>Marathi</span>
+        </button>
+
+        <button class="language">
+          <b>தமிழ்</b>
+          <span>Tamil</span>
+        </button>
+
+      </div>
+
+      <button id="continueBtn" class="main-btn">
+        आगे बढ़ें →
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- LOGIN -->
+  <section id="loginScreen" class="screen hidden">
+
+    <div class="login-card">
+
+      <div class="om">ॐ</div>
+
+      <h1>स्वागत है</h1>
+
+      <p>
+        Nakshatra Jyoti में आपका स्वागत है।
+      </p>
+
+      <input
+        id="userName"
+        type="text"
+        placeholder="अपना नाम लिखें"
+      >
+
+      <button id="loginBtn" class="main-btn">
+        आगे बढ़ें
+      </button>
+
+      <button id="guestBtn" class="guest-btn">
+        Guest के रूप में आगे बढ़ें
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- MAIN APP -->
+  <div id="app" class="hidden">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+      <button id="menuBtn" class="menu-btn">
+        ☰
+      </button>
+
+      <div class="logo">
+
+        <div class="logo-om">
+          ॐ
+        </div>
+
+        <div>
+          <b>Nakshatra Jyoti</b>
+          <small>वैदिक मार्गदर्शन</small>
+        </div>
+
+      </div>
+
+      <button id="profileBtn" class="profile">
+        G
+      </button>
+
+    </header>
+
+
+    <!-- SIDE MENU -->
+
+    <div id="overlay"></div>
+
+    <aside id="sideMenu">
+
+      <button id="closeMenu">
+        ×
+      </button>
+
+      <h2>Nakshatra Jyoti</h2>
+
+      <button data-page="home">
+        🏠 होम
+      </button>
+
+      <button data-page="acharya">
+        ॐ आचार्य
+      </button>
+
+      <button data-page="kundli">
+        🔮 कुंडली
+      </button>
+
+      <button data-page="messages">
+        💬 संदेश
+      </button>
+
+      <button data-page="rashifal">
+        ✦ राशिफल
+      </button>
+
+    </aside>
+
+
+    <!-- HOME -->
+
+    <main>
+
+      <section id="homePage" class="page active">
+
+
+        <!-- HERO SLIDER -->
+
+        <div id="heroSlider" class="hero">
+
+          <div class="hero-content">
+
+            <small>
+              VEDIC WISDOM • MODERN GUIDANCE
+            </small>
+
+            <h1>
+              अपने प्रश्नों को ज्ञान की दिशा दें।
+            </h1>
+
+            <p>
+              वैदिक ज्ञान, कुंडली अध्ययन और
+              हमारे आचार्यों से व्यक्तिगत मार्गदर्शन।
+            </p>
+
+            <div class="hero-buttons">
+
+              <button id="talkBtn" class="main-btn">
+                आचार्य से बात करें
+              </button>
+
+              <button data-page="kundli" class="outline-btn">
+                कुंडली बनाएं
+              </button>
+
+            </div>
+
+          </div>
+
+          <div id="sliderDots"></div>
+
+        </div>
+
+
+        <!-- SERVICES -->
+
+        <section class="section">
+
+          <div class="section-heading">
+
+            <small>EXPLORE</small>
+
+            <h2>
+              आप किस विषय पर मार्गदर्शन चाहते हैं?
+            </h2>
+
+          </div>
+
+
+          <div class="services">
+
+            <button>
+              <span>💼</span>
+              <h3>करियर</h3>
+              <p>नौकरी, व्यवसाय और दिशा</p>
+            </button>
+
+            <button>
+              <span>♡</span>
+              <h3>विवाह</h3>
+              <p>विवाह एवं संबंध</p>
+            </button>
+
+            <button>
+              <span>◉</span>
+              <h3>मुहूर्त</h3>
+              <p>शुभ समय और कार्य</p>
+            </button>
+
+            <button>
+              <span>📚</span>
+              <h3>अध्ययन</h3>
+              <p>अध्ययन एवं भविष्य</p>
+            </button>
+
+          </div>
+
+        </section>
+
+
+        <!-- KUNDLI -->
+
+        <section class="kundli-banner">
+
+          <div>
+
+            <small>AI + VEDIC</small>
+
+            <h2>
+              अपनी कुंडली तैयार करें
+            </h2>
+
+            <p>
+              जन्म विवरण देकर अपनी व्यक्तिगत कुंडली तैयार करें।
+            </p>
+
+          </div>
+
+          <button
+            data-page="kundli"
+            class="outline-btn"
+          >
+            शुरू करें →
+          </button>
+
+        </section>
+
+
+        <!-- ACHARYAS -->
+
+        <section class="section">
+
+          <div class="section-heading">
+
+            <small>PERSONAL GUIDANCE</small>
+
+            <h2>
+              हमारे आचार्य
+            </h2>
+
+          </div>
+
+
+          <div id="acharyaList"></div>
+
+        </section>
+
+      </section>
+
+
+      <!-- ACHARYA PAGE -->
+
+      <section id="acharyaPage" class="page">
+
+        <div class="page-heading">
+
+          <small>PERSONAL GUIDANCE</small>
+
+          <h1>
+            हमारे आचार्य
+          </h1>
+
+          <p>
+            प्रत्येक आचार्य की योग्यता,
+            विशेषज्ञता और परामर्श की जानकारी
+            यहाँ आगे जोड़ी जा सकती है।
+          </p>
+
+        </div>
+
+        <div id="acharyaFull"></div>
+
+      </section>
+
+
+      <!-- KUNDLI PAGE -->
+
+      <section id="kundliPage" class="page">
+
+        <div class="page-heading">
+
+          <small>AI + VEDIC</small>
+
+          <h1>
+            अपनी कुंडली तैयार करें
+          </h1>
+
+          <p>
+            अपना जन्म विवरण भरें।
+          </p>
+
+        </div>
+
+
+        <div class="form-card">
+
+          <label>
+            नाम
+            <input type="text" placeholder="पूरा नाम">
+          </label>
+
+          <label>
+            जन्म तारीख
+            <input type="date">
+          </label>
+
+          <label>
+            जन्म समय
+            <input type="time">
+          </label>
+
+          <label>
+            जन्म स्थान
+            <input type="text" placeholder="जन्म स्थान">
+          </label>
+
+          <button class="main-btn">
+            कुंडली तैयार करें
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- MESSAGE PAGE -->
+
+      <section id="messagesPage" class="page">
+
+        <div class="page-heading">
+
+          <small>PERSONAL CHAT</small>
+
+          <h1>
+            संदेश
+          </h1>
+
+          <p>
+            आचार्य से चैट करें।
+          </p>
+
+        </div>
+
+        <div id="messageList"></div>
+
+      </section>
+
+
+      <!-- RASHIFAL -->
+
+      <section id="rashifalPage" class="page">
+
+        <div class="page-heading">
+
+          <small>DAILY GUIDANCE</small>
+
+          <h1>
+            राशिफल
+          </h1>
+
+        </div>
+
+        <div class="coming">
+          ✦
+          <h2>
+            दैनिक राशिफल
+          </h2>
+
+          <p>
+            यह सुविधा अगले चरण में जोड़ी जाएगी।
+          </p>
+        </div>
+
+      </section>
+
+
+      <!-- PROFILE -->
+
+      <section id="profilePage" class="page">
+
+        <div class="page-heading">
+
+          <small>ACCOUNT</small>
+
+          <h1>
+            मेरा अकाउंट
+          </h1>
+
+        </div>
+
+        <div class="profile-card">
+
+          <div id="bigProfile">
+            G
+          </div>
+
+          <div>
+            <h2 id="profileName">
+              Guest
+            </h2>
+
+            <p>
+              आपका व्यक्तिगत अकाउंट।
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- BOTTOM NAV -->
+
+    <nav class="bottom-nav">
+
+      <button data-page="home">
+        <span>⌂</span>
+        <small>होम</small>
+      </button>
+
+      <button data-page="acharya">
+        <span>ॐ</span>
+        <small>आचार्य</small>
+      </button>
+
+      <button id="callButton" class="call-button">
+        <span>☎</span>
+        <small>कॉल</small>
+      </button>
+
+      <button data-page="kundli">
+        <span>◉</span>
+        <small>कुंडली</small>
+      </button>
+
+      <button data-page="messages">
+        <span>💬</span>
+        <small>संदेश</small>
+      </button>
+
+    </nav>
+
+  </div>
+
+
+  <!-- CALL MODAL -->
+
+  <div id="callModal" class="modal">
+
+    <div class="modal-box">
+
+      <button class="closeModal">
+        ×
+      </button>
+
+      <h2>
+        ☎ आचार्य से बात करें
+      </h2>
+
+      <p>
+        आचार्य चुनें
+      </p>
+
+      <div id="callList"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- CHAT MODAL -->
+
+  <div id="chatModal" class="modal">
+
+    <div class="chat-box">
+
+      <button class="closeModal">
+        ×
+      </button>
+
+      <div class="chat-header">
+
+        <div id="chatAvatar">
+          ॐ
+        </div>
+
+        <div>
+          <b id="chatName">
+            आचार्य
+          </b>
+
+          <small>
+            ● Online
+          </small>
+        </div>
+
+      </div>
+
+
+      <div id="chatMessages">
+
+        <p class="empty-chat">
+          बातचीत शुरू करें।
+        </p>
+
+      </div>
+
+
+      <div class="chat-input">
+
+        <input
+          id="messageInput"
+          type="text"
+          placeholder="संदेश लिखें..."
+        >
+
+        <button id="sendBtn">
+          ➤
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+                </html>
