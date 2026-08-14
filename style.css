@@ -1,0 +1,1816 @@
+/* =====================================================
+   NAKSHATRA JYOTI
+   MAIN DESIGN SYSTEM
+===================================================== */
+
+:root {
+
+  --bg: #faf8f3;
+  --surface: #ffffff;
+  --surface-2: #f4efe6;
+
+  --text: #201b17;
+  --muted: #756d64;
+
+  --gold: #b87920;
+  --gold-light: #e5b75d;
+  --gold-pale: #f7e5bd;
+
+  --border: #e7ded0;
+
+  --danger: #b83a35;
+
+  --shadow:
+    0 15px 45px rgba(50, 35, 15, .08);
+
+  --radius: 22px;
+
+  --max-width: 1180px;
+}
+
+
+/* DARK THEME */
+
+body.dark {
+
+  --bg: #0d0b10;
+  --surface: #15121a;
+  --surface-2: #211a25;
+
+  --text: #f7f0e6;
+  --muted: #aaa0a9;
+
+  --gold: #d8a94d;
+  --gold-light: #f1cb77;
+  --gold-pale: #3b2d19;
+
+  --border: #332b38;
+
+  --shadow:
+    0 20px 60px rgba(0,0,0,.35);
+}
+
+
+/* RESET */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+
+  font-family:
+    "Noto Sans Devanagari",
+    system-ui,
+    sans-serif;
+
+  background: var(--bg);
+  color: var(--text);
+
+  min-height: 100vh;
+
+  transition:
+    background .3s ease,
+    color .3s ease;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(.98);
+}
+
+
+/* =====================================================
+   COMMON
+===================================================== */
+
+.hidden {
+  display: none !important;
+}
+
+.screen {
+
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(229,183,93,.18),
+      transparent 45%
+    ),
+    var(--bg);
+}
+
+
+.eyebrow {
+
+  color: var(--gold);
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 12px;
+}
+
+
+.brand-logo {
+
+  width: 74px;
+  height: 74px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f2ce83,
+      #ad711c
+    );
+
+  color: #21170b;
+
+  font-size: 42px;
+
+  font-family: serif;
+
+  box-shadow:
+    0 12px 30px rgba(176,119,32,.28);
+
+  margin: 0 auto 18px;
+}
+
+
+.brand-logo.small {
+
+  width: 62px;
+  height: 62px;
+
+  font-size: 34px;
+}
+
+
+.brand-logo.mini {
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 13px;
+
+  font-size: 25px;
+
+  margin: 0;
+}
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+.language-card,
+.login-card {
+
+  width: min(620px, 100%);
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: 30px;
+
+  padding: 42px;
+
+  box-shadow: var(--shadow);
+
+  text-align: center;
+}
+
+
+.language-card h1,
+.login-card h1 {
+
+  font-size: clamp(30px, 6vw, 50px);
+
+  line-height: 1.15;
+
+  margin-bottom: 12px;
+}
+
+
+.language-card > p,
+.login-card > p {
+
+  color: var(--muted);
+
+  margin-bottom: 30px;
+}
+
+
+.language-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 12px;
+
+  margin-bottom: 18px;
+}
+
+
+.language-btn {
+
+  text-align: left;
+
+  padding: 18px;
+
+  border-radius: 18px;
+
+  border: 1px solid var(--border);
+
+  background: var(--surface);
+
+  color: var(--text);
+
+  transition: .2s;
+}
+
+
+.language-btn strong {
+
+  display: block;
+
+  font-size: 19px;
+
+  margin-bottom: 4px;
+}
+
+
+.language-btn span {
+
+  color: var(--muted);
+
+  font-size: 13px;
+}
+
+
+.language-btn:hover,
+.language-btn.active {
+
+  border-color: var(--gold);
+
+  background: var(--gold-pale);
+
+  transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.primary-btn {
+
+  border: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold-light),
+      var(--gold)
+    );
+
+  color: #21170b;
+
+  font-weight: 800;
+
+  border-radius: 14px;
+
+  padding: 14px 22px;
+
+  min-height: 50px;
+
+  box-shadow:
+    0 10px 25px rgba(184,121,32,.20);
+}
+
+
+.secondary-btn {
+
+  border: 1px solid var(--gold);
+
+  background: transparent;
+
+  color: var(--text);
+
+  font-weight: 700;
+
+  border-radius: 14px;
+
+  padding: 13px 20px;
+}
+
+
+.text-btn {
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--muted);
+
+  padding: 15px;
+
+  margin-top: 6px;
+}
+
+
+.danger-btn {
+
+  margin-top: 20px;
+
+  width: 100%;
+
+  padding: 14px;
+
+  border-radius: 14px;
+
+  border: 1px solid rgba(184,58,53,.35);
+
+  background: transparent;
+
+  color: var(--danger);
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+.login-card input {
+
+  width: 100%;
+
+  padding: 15px 16px;
+
+  margin-bottom: 12px;
+
+  border-radius: 14px;
+
+  border: 1px solid var(--border);
+
+  background: var(--surface-2);
+
+  color: var(--text);
+
+  outline: none;
+}
+
+
+.login-card input:focus {
+
+  border-color: var(--gold);
+}
+
+
+.login-card .primary-btn {
+
+  width: 100%;
+}
+
+
+/* =====================================================
+   APP TOPBAR
+===================================================== */
+
+.app {
+
+  min-height: 100vh;
+
+  padding-bottom: 90px;
+}
+
+
+.topbar {
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 30;
+
+  height: 72px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 0 22px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--surface) 92%,
+      transparent
+    );
+
+  backdrop-filter: blur(18px);
+
+  border-bottom: 1px solid var(--border);
+}
+
+
+.icon-btn {
+
+  width: 44px;
+  height: 44px;
+
+  border-radius: 13px;
+
+  border: 1px solid var(--border);
+
+  background: var(--surface);
+
+  color: var(--text);
+
+  font-size: 21px;
+}
+
+
+.brand {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-right: auto;
+}
+
+
+.brand strong {
+
+  display: block;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 20px;
+}
+
+
+.brand span {
+
+  display: block;
+
+  color: var(--muted);
+
+  font-size: 11px;
+}
+
+
+.account-chip {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  border: 1px solid var(--border);
+
+  background: var(--surface);
+
+  color: var(--text);
+
+  padding: 5px 10px 5px 5px;
+
+  border-radius: 30px;
+}
+
+
+.account-chip div {
+
+  width: 34px;
+  height: 34px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: var(--gold-pale);
+
+  color: var(--gold);
+
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   SIDE MENU
+===================================================== */
+
+.side-menu {
+
+  position: fixed;
+
+  z-index: 100;
+
+  left: 0;
+  top: 0;
+
+  width: 310px;
+
+  height: 100vh;
+
+  padding: 28px 20px;
+
+  background: var(--surface);
+
+  border-right: 1px solid var(--border);
+
+  transform: translateX(-105%);
+
+  transition: transform .3s ease;
+
+  box-shadow: var(--shadow);
+}
+
+
+.side-menu.open {
+  transform: translateX(0);
+}
+
+
+.side-brand {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 20px;
+
+  margin-bottom: 35px;
+}
+
+
+.close-menu {
+
+  position: absolute;
+
+  top: 20px;
+  right: 18px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--text);
+
+  font-size: 28px;
+}
+
+
+.side-menu nav {
+
+  display: grid;
+
+  gap: 7px;
+}
+
+
+.side-menu nav button {
+
+  text-align: left;
+
+  padding: 15px;
+
+  border-radius: 13px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--text);
+
+  font-size: 16px;
+}
+
+
+.side-menu nav button:hover {
+
+  background: var(--surface-2);
+
+  color: var(--gold);
+}
+
+
+.overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 90;
+
+  background: rgba(0,0,0,.38);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: .3s;
+}
+
+
+.overlay.show {
+
+  opacity: 1;
+
+  pointer-events: auto;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+#pageContainer {
+
+  width: min(var(--max-width), 100%);
+
+  margin: auto;
+}
+
+
+.page {
+
+  display: none;
+
+  padding: 24px;
+}
+
+
+.page.active {
+
+  display: block;
+
+  animation: pageIn .25s ease;
+}
+
+
+@keyframes pageIn {
+
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.back-btn {
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--muted);
+
+  padding: 10px 0;
+
+  margin-bottom: 20px;
+}
+
+
+.page-heading {
+
+  padding: 25px 0 35px;
+}
+
+
+.page-heading h1 {
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(36px, 6vw, 64px);
+
+  line-height: 1.1;
+
+  margin-bottom: 12px;
+}
+
+
+.page-heading p {
+
+  color: var(--muted);
+
+  max-width: 650px;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+  min-height: 480px;
+
+  margin: 20px 0 55px;
+
+  padding: clamp(30px, 6vw, 70px);
+
+  border-radius: 30px;
+
+  border: 1px solid var(--border);
+
+  position: relative;
+
+  overflow: hidden;
+
+  display: flex;
+
+  align-items: center;
+
+  background:
+
+    radial-gradient(
+      circle at 85% 50%,
+      rgba(216,169,77,.25),
+      transparent 35%
+    ),
+
+    linear-gradient(
+      120deg,
+      var(--surface),
+      var(--surface-2)
+    );
+}
+
+
+.hero-content {
+
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 650px;
+}
+
+
+.hero h1 {
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(44px, 7vw, 82px);
+
+  line-height: 1.04;
+
+  margin-bottom: 20px;
+}
+
+
+.hero p {
+
+  color: var(--muted);
+
+  font-size: 17px;
+
+  line-height: 1.8;
+
+  margin-bottom: 28px;
+}
+
+
+.hero-actions {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+}
+
+
+.hero-symbol {
+
+  position: absolute;
+
+  right: 8%;
+
+  font-family: serif;
+
+  font-size: clamp(180px, 30vw, 380px);
+
+  color: var(--gold);
+
+  opacity: .16;
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.section {
+
+  margin-bottom: 65px;
+}
+
+
+.section-heading h2 {
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(32px, 5vw, 54px);
+
+  line-height: 1.15;
+
+  margin-bottom: 25px;
+}
+
+
+.service-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 15px;
+}
+
+
+.service-card {
+
+  min-height: 190px;
+
+  padding: 25px;
+
+  text-align: left;
+
+  border-radius: 20px;
+
+  border: 1px solid var(--border);
+
+  background: var(--surface);
+
+  color: var(--text);
+
+  transition: .25s;
+}
+
+
+.service-card:hover {
+
+  transform: translateY(-5px);
+
+  border-color: var(--gold);
+
+  box-shadow: var(--shadow);
+}
+
+
+.service-icon {
+
+  color: var(--gold);
+
+  font-size: 30px;
+
+  margin-bottom: 30px;
+}
+
+
+.service-card h3 {
+
+  font-size: 22px;
+
+  margin-bottom: 7px;
+}
+
+
+.service-card p {
+
+  color: var(--muted);
+
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   PROMO
+===================================================== */
+
+.promo {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 25px;
+
+  margin: 30px 0 70px;
+
+  padding: 35px;
+
+  border-radius: 24px;
+
+  border: 1px solid var(--gold);
+
+  background:
+
+    radial-gradient(
+      circle at 90% 50%,
+      rgba(216,169,77,.18),
+      transparent 35%
+    ),
+
+    var(--surface-2);
+}
+
+
+.promo h2 {
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(30px, 5vw, 50px);
+
+  margin-bottom: 8px;
+}
+
+
+.promo p {
+
+  color: var(--muted);
+}
+
+
+/* =====================================================
+   ACHARYA
+===================================================== */
+
+.acharya-list {
+
+  display: grid;
+
+  gap: 12px;
+}
+
+
+.acharya-item {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 15px;
+
+  border-radius: 18px;
+
+  border: 1px solid var(--border);
+
+  background: var(--surface);
+
+  color: var(--text);
+
+  text-align: left;
+}
+
+
+.acharya-photo {
+
+  width: 65px;
+  height: 65px;
+
+  border-radius: 17px;
+
+  object-fit: cover;
+
+  background: var(--surface-2);
+}
+
+
+.acharya-placeholder {
+
+  width: 65px;
+  height: 65px;
+
+  border-radius: 17px;
+
+  display: grid;
+
+  place-items: center;
+
+  background: var(--gold-pale);
+
+  color: var(--gold);
+
+  font-size: 25px;
+
+  font-weight: 800;
+}
+
+
+.acharya-info {
+
+  flex: 1;
+}
+
+
+.acharya-info h3 {
+
+  margin-bottom: 5px;
+}
+
+
+.acharya-info p {
+
+  color: var(--muted);
+
+  font-size: 13px;
+}
+
+
+.online {
+
+  color: #28a66a;
+
+  font-size: 12px;
+
+  margin-top: 5px;
+}
+
+
+.acharya-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
+}
+
+
+.acharya-profile {
+
+  border: 1px solid var(--border);
+
+  border-radius: 24px;
+
+  background: var(--surface);
+
+  overflow: hidden;
+}
+
+
+.profile-photo {
+
+  width: 100%;
+
+  height: 280px;
+
+  object-fit: cover;
+
+  background: var(--surface-2);
+}
+
+
+.profile-body {
+
+  padding: 24px;
+}
+
+
+.profile-body h2 {
+
+  font-family: "Playfair Display", serif;
+
+  margin-bottom: 8px;
+}
+
+
+.profile-body p {
+
+  color: var(--muted);
+
+  line-height: 1.7;
+}
+
+
+.call-btn {
+
+  width: 100%;
+
+  margin-top: 18px;
+
+  padding: 13px;
+
+  border: 0;
+
+  border-radius: 13px;
+
+  background: var(--gold);
+
+  color: #21170b;
+
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   CALL PAGE
+===================================================== */
+
+.call-list {
+
+  display: grid;
+
+  gap: 14px;
+
+  max-width: 800px;
+}
+
+
+.call-person {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 17px;
+
+  border: 1px solid var(--border);
+
+  background: var(--surface);
+
+  border-radius: 20px;
+}
+
+
+.call-person-info {
+
+  flex: 1;
+}
+
+
+.call-person-info strong {
+
+  display: block;
+
+  font-size: 17px;
+}
+
+
+.call-person-info span {
+
+  display: block;
+
+  color: var(--muted);
+
+  font-size: 13px;
+
+  margin-top: 4px;
+}
+
+
+.phone-button {
+
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+
+  border: 0;
+
+  background: var(--gold);
+
+  color: #21170b;
+
+  font-size: 22px;
+}
+
+
+/* =====================================================
+   KUNDLI
+===================================================== */
+
+.kundli-layout {
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 20px;
+}
+
+
+.form-card,
+.result-card,
+.about-card,
+.rashifal-result {
+
+  padding: 30px;
+
+  border-radius: 23px;
+
+  border: 1px solid var(--border);
+
+  background: var(--surface);
+}
+
+
+.form-card label {
+
+  display: block;
+
+  margin-bottom: 16px;
+
+  font-weight: 700;
+}
+
+
+.form-card input {
+
+  width: 100%;
+
+  margin-top: 7px;
+
+  padding: 14px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 13px;
+
+  background: var(--surface-2);
+
+  color: var(--text);
+
+  outline: none;
+}
+
+
+.form-card .primary-btn {
+
+  width: 100%;
+
+  margin-top: 5px;
+}
+
+
+.result-card {
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  min-height: 400px;
+}
+
+
+.result-icon {
+
+  font-size: 50px;
+
+  color: var(--gold);
+
+  margin-bottom: 15px;
+}
+
+
+.result-card p {
+
+  color: var(--muted);
+
+  line-height: 1.7;
+}
+
+
+/* =====================================================
+   ZODIAC
+===================================================== */
+
+.zodiac-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 12px;
+
+  margin-bottom: 25px;
+}
+
+
+.zodiac-grid button {
+
+  padding: 18px;
+
+  border-radius: 15px;
+
+  border: 1px solid var(--border);
+
+  background: var(--surface);
+
+  color: var(--text);
+}
+
+
+.zodiac-grid button:hover {
+
+  border-color: var(--gold);
+
+  color: var(--gold);
+}
+
+
+.rashifal-result {
+
+  min-height: 220px;
+}
+
+
+.rashifal-result h2 {
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 35px;
+
+  margin-bottom: 12px;
+}
+
+
+.rashifal-result p {
+
+  color: var(--muted);
+}
+
+
+/* =====================================================
+   ACCOUNT
+===================================================== */
+
+.account-header {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 30px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 24px;
+
+  background: var(--surface);
+
+  margin-bottom: 20px;
+}
+
+
+.big-avatar {
+
+  width: 90px;
+  height: 90px;
+
+  border-radius: 25px;
+
+  display: grid;
+
+  place-items: center;
+
+  background: var(--gold-pale);
+
+  color: var(--gold);
+
+  font-size: 40px;
+
+  font-weight: 800;
+}
+
+
+.account-header h1 {
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 40px;
+}
+
+
+.account-header p {
+
+  color: var(--muted);
+}
+
+
+.settings-list {
+
+  border: 1px solid var(--border);
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  background: var(--surface);
+}
+
+
+.settings-list button {
+
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 19px;
+
+  border: 0;
+
+  border-bottom: 1px solid var(--border);
+
+  background: transparent;
+
+  color: var(--text);
+
+  text-align: left;
+
+  font-size: 16px;
+}
+
+
+.settings-list button:last-child {
+  border-bottom: 0;
+}
+
+
+.settings-list span {
+
+  color: var(--gold);
+
+  font-size: 20px;
+}
+
+
+.settings-list b {
+
+  margin-left: auto;
+
+  color: var(--muted);
+
+  font-size: 22px;
+}
+
+
+/* =====================================================
+   SERVICE OPTIONS
+===================================================== */
+
+.service-options {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 15px;
+}
+
+
+.service-option {
+
+  padding: 25px;
+
+  border-radius: 20px;
+
+  border: 1px solid var(--border);
+
+  background: var(--surface);
+
+  color: var(--text);
+
+  text-align: left;
+
+  transition: .2s;
+}
+
+
+.service-option:hover {
+
+  border-color: var(--gold);
+
+  transform: translateY(-3px);
+}
+
+
+.service-option .icon {
+
+  color: var(--gold);
+
+  font-size: 28px;
+
+  margin-bottom: 18px;
+}
+
+
+.service-option p {
+
+  color: var(--muted);
+
+  font-size: 13px;
+
+  margin-top: 6px;
+}
+
+
+/* =====================================================
+   BOTTOM NAV
+===================================================== */
+
+.bottom-nav {
+
+  position: fixed;
+
+  z-index: 50;
+
+  left: 50%;
+
+  bottom: 12px;
+
+  transform: translateX(-50%);
+
+  width: min(720px, calc(100% - 24px));
+
+  height: 72px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, 1fr);
+
+  align-items: center;
+
+  padding: 5px;
+
+  border: 1px solid var(--border);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--surface) 94%,
+      transparent
+    );
+
+  backdrop-filter: blur(20px);
+
+  border-radius: 24px;
+
+  box-shadow: var(--shadow);
+}
+
+
+.bottom-nav button {
+
+  height: 62px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--muted);
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 3px;
+
+}
+
+
+.bottom-nav button span {
+
+  font-size: 21px;
+}
+
+
+.bottom-nav button small {
+
+  font-size: 10px;
+}
+
+
+.bottom-nav button:hover {
+
+  color: var(--gold);
+}
+
+
+.call-main {
+
+  position: relative;
+
+  color: var(--gold) !important;
+}
+
+
+.call-main span {
+
+  width: 55px;
+  height: 55px;
+
+  display: grid !important;
+
+  place-items: center;
+
+  margin-top: -25px;
+
+  border-radius: 50%;
+
+  border: 4px solid var(--bg);
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--gold-light),
+      var(--gold)
+    );
+
+  color: #21170b;
+
+  box-shadow:
+    0 10px 30px rgba(184,121,32,.35);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+  .service-grid {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .acharya-grid {
+
+    grid-template-columns: 1fr;
+  }
+
+  .kundli-layout {
+
+    grid-template-columns: 1fr;
+  }
+
+  .service-options {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .language-card,
+  .login-card {
+
+    padding: 28px 18px;
+  }
+
+  .language-grid {
+
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+
+    padding: 0 12px;
+  }
+
+  .brand strong {
+
+    font-size: 17px;
+  }
+
+  .hero {
+
+    min-height: 510px;
+
+    padding: 30px 22px;
+  }
+
+  .hero-symbol {
+
+    right: -20px;
+
+    opacity: .11;
+  }
+
+  .service-grid {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .service-card {
+
+    min-height: 170px;
+
+    padding: 18px;
+  }
+
+  .promo {
+
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .service-options {
+
+    grid-template-columns: 1fr;
+  }
+
+  .zodiac-grid {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .account-header {
+
+    padding: 20px;
+  }
+
+  .big-avatar {
+
+    width: 70px;
+    height: 70px;
+  }
+
+  .account-header h1 {
+
+    font-size:
