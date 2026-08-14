@@ -223,59 +223,83 @@ async function initializeFirebase() {
    LOGIN
 ===================================================== */
 
-$("loginButton")?.addEventListener(
-  "click",
-  async () => {
+$("loginButton")?.addEventListener("click", async () => {
 
-    if (!auth) {
+  const email = $("loginEmail")?.value.trim();
+  const password = $("loginPassword")?.value;
 
-      showError(
-        "Login system अभी Firebase से connect नहीं हुआ है।"
-      );
+  const errorBox = $("loginError");
+  const button = $("loginButton");
 
-      return;
-
+  if (!email || !password) {
+    if (errorBox) {
+      errorBox.textContent = "ईमेल और पासवर्ड भरें।";
     }
+    return;
+  }
 
-
-    const email =
-      $("loginEmail")
-        ?.value
-        .trim();
-
-
-    const password =
-      $("loginPassword")
-        ?.value;
-
-
-    if (!email || !password) {
-
-      showError(
-        "ईमेल और पासवर्ड भरें।"
-      );
-
-      return;
-
+  if (!auth) {
+    if (errorBox) {
+      errorBox.textContent =
+        "Firebase connect नहीं हुआ। Console खोलकर error देखें।";
     }
+    console.error("AUTH OBJECT:", auth);
+    return;
+  }
 
+  try {
 
-    try {
+    button.disabled = true;
+    button.textContent = "लॉगिन हो रहा है...";
 
-      setLoginLoading(true);
+    console.log("LOGIN START");
+    console.log("EMAIL:", email);
+    console.log("AUTH:", auth);
 
+    const authModule = await import(
+      "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js"
+    );
 
-      const authModule =
-        await import(
-          "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js"
-        );
-
-
+    const result =
       await authModule.signInWithEmailAndPassword(
         auth,
         email,
         password
       );
+
+    console.log("LOGIN SUCCESS:", result.user);
+
+    if (errorBox) {
+      errorBox.textContent = "";
+    }
+
+    showApp();
+    updateUserUI(result.user);
+
+  } catch (error) {
+
+    console.error("🔥 FIREBASE LOGIN ERROR:", error);
+    console.error("ERROR CODE:", error.code);
+    console.error("ERROR MESSAGE:", error.message);
+
+    if (errorBox) {
+
+      errorBox.textContent =
+        "Firebase Error: " +
+        error.code +
+        " — " +
+        error.message;
+
+    }
+
+  } finally {
+
+    button.disabled = false;
+    button.textContent = "लॉगिन करें";
+
+  }
+
+});
 
 
       $("loginError").textContent = "";
