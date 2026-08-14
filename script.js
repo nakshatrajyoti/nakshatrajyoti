@@ -151,13 +151,13 @@ async function initializeFirebase() {
         "AIzaSyDRnf2BBo6KnjXCfXAaBvq58SDZ7cuVB9w",
 
       authDomain:
-        "nakshatra-jyoti.firebaseapp.com",
+        "nakshatrajyoti.firebaseapp.com",
 
       projectId:
-        "nakshatra-jyoti",
+        "nakshatrajyoti",
 
       storageBucket:
-        "nakshatra-jyoti.firebasestorage.app",
+        "nakshatrajyoti.firebasestorage.app",
 
       messagingSenderId:
         "8014602515",
