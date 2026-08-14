@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Nakshatra Jyoti</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     LANGUAGE
+===================================================== -->
+
+<section id="languageScreen" class="screen">
+
+  <div class="auth-card">
+
+    <div class="om-logo">ॐ</div>
+
+    <h1>अपनी भाषा चुनें</h1>
+
+    <p>आगे बढ़ने के लिए अपनी पसंद की भाषा चुनें।</p>
+
+    <div class="language-grid">
+
+      <button class="language active" data-lang="hi">
+        <b>हिन्दी</b>
+        <span>Hindi</span>
+      </button>
+
+      <button class="language" data-lang="en">
+        <b>English</b>
+        <span>English</span>
+      </button>
+
+      <button class="language" data-lang="sa">
+        <b>संस्कृतम्</b>
+        <span>Sanskrit</span>
+      </button>
+
+      <button class="language" data-lang="bn">
+        <b>বাংলা</b>
+        <span>Bengali</span>
+      </button>
+
+      <button class="language" data-lang="mr">
+        <b>मराठी</b>
+        <span>Marathi</span>
+      </button>
+
+      <button class="language" data-lang="ta">
+        <b>தமிழ்</b>
+        <span>Tamil</span>
+      </button>
+
+    </div>
+
+    <button id="languageContinue" class="gold-btn">
+      आगे बढ़ें →
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<section id="loginScreen" class="screen hidden">
+
+  <div class="auth-card login-card">
+
+    <div class="om-logo">ॐ</div>
+
+    <h1>स्वागत है</h1>
+
+    <p>Nakshatra Jyoti में आपका स्वागत है।</p>
+
+    <input
+      id="loginEmail"
+      type="email"
+      placeholder="ईमेल पता"
+      autocomplete="email"
+    >
+
+    <input
+      id="loginPassword"
+      type="password"
+      placeholder="पासवर्ड"
+      autocomplete="current-password"
+    >
+
+    <button id="loginButton" class="gold-btn">
+      लॉगिन करें
+    </button>
+
+    <button id="registerButton" class="text-btn">
+      नया अकाउंट बनाएँ
+    </button>
+
+    <p id="loginError" class="error"></p>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     MAIN APP
+===================================================== -->
+
+<div id="mainApp" class="hidden">
+
+  <!-- HEADER -->
+
+  <header class="header">
+
+    <button id="menuButton" class="icon-btn">
+      ☰
+    </button>
+
+    <div class="brand">
+
+      <div class="brand-om">
+        ॐ
+      </div>
+
+      <div>
+        <strong>Nakshatra Jyoti</strong>
+        <small>वैदिक मार्गदर्शन</small>
+      </div>
+
+    </div>
+
+    <button id="accountButton" class="profile-btn">
+      <span id="profileLetter">G</span>
+    </button>
+
+  </header>
+
+
+  <!-- SIDE MENU -->
+
+  <div id="menuOverlay"></div>
+
+  <aside id="sideMenu">
+
+    <button id="closeMenu" class="close-btn">
+      ×
+    </button>
+
+    <div class="side-brand">
+      <div class="brand-om">ॐ</div>
+      <strong>Nakshatra Jyoti</strong>
+    </div>
+
+    <button data-page="home">⌂ होम</button>
+
+    <button data-page="acharya">ॐ आचार्य</button>
+
+    <button data-page="call">☎ कॉल</button>
+
+    <button data-page="kundli">◉ कुंडली</button>
+
+    <button data-page="aiMessage">💬 AI संदेश</button>
+
+  </aside>
+
+
+  <!-- =================================================
+       PAGES
+  ================================================== -->
+
+  <main>
+
+
+    <!-- ================= HOME ================= -->
+
+    <section id="homePage" class="page active">
+
+      <!-- DAILY POSTER -->
+
+      <div class="poster-slider">
+
+        <div class="poster-track">
+
+          <img
+            src="assets/posters/poster-1.jpg"
+            class="poster active"
+            alt="आज का पोस्टर"
+          >
+
+          <img
+            src="assets/posters/poster-2.jpg"
+            class="poster"
+            alt="आज का पोस्टर"
+          >
+
+          <img
+            src="assets/posters/poster-3.jpg"
+            class="poster"
+            alt="आज का पोस्टर"
+          >
+
+        </div>
+
+        <div id="posterDots" class="poster-dots"></div>
+
+      </div>
+
+
+      <!-- SERVICES -->
+
+      <section class="section">
+
+        <div class="section-heading">
+
+          <span>GUIDANCE</span>
+
+          <h2>
+            आप किस विषय पर मार्गदर्शन चाहते हैं?
+          </h2>
+
+        </div>
+
+
+        <div class="service-grid">
+
+          <button class="service-card" data-service="career">
+
+            <div class="service-icon">💼</div>
+
+            <h3>करियर</h3>
+
+            <p>
+              नौकरी, व्यवसाय और करियर दिशा
+            </p>
+
+          </button>
+
+
+          <button class="service-card" data-service="marriage">
+
+            <div class="service-icon">♡</div>
+
+            <h3>विवाह</h3>
+
+            <p>
+              विवाह एवं संबंध
+            </p>
+
+          </button>
+
+
+          <button class="service-card" data-service="muhurat">
+
+            <div class="service-icon">✦</div>
+
+            <h3>मुहूर्त</h3>
+
+            <p>
+              शुभ समय और कार्य
+            </p>
+
+          </button>
+
+
+          <button class="service-card" data-service="education">
+
+            <div class="service-icon">🎓</div>
+
+            <h3>अध्ययन एवं विद्या</h3>
+
+            <p>
+              शिक्षा और अध्ययन मार्गदर्शन
+            </p>
+
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- HOME ACHARYA -->
+
+      <section class="section acharya-home">
+
+        <div class="section-heading">
+
+          <span>PERSONAL GUIDANCE</span>
+
+          <h2>हमारे आचार्य</h2>
+
+        </div>
+
+
+        <div class="home-acharya-grid">
+
+          <!-- 1 -->
+
+          <button
+            class="home-acharya-card"
+            data-page="acharya"
+          >
+
+            <img
+              src="assets/acharya/shubhanshu.jpg"
+              alt="ज्योतिषाचार्य शुभांशु दुबे"
+            >
+
+            <h3>
+              ज्योतिषाचार्य शुभांशु दुबे
+            </h3>
+
+          </button>
+
+
+          <!-- 2 -->
+
+          <button
+            class="home-acharya-card"
+            data-page="acharya"
+          >
+
+            <img
+              src="assets/acharya/shrikant.jpg"
+              alt="श्रीकांत मिश्रा"
+            >
+
+            <h3>
+              श्रीकांत मिश्रा
+            </h3>
+
+          </button>
+
+
+          <!-- 3 -->
+
+          <button
+            class="home-acharya-card"
+            data-page="acharya"
+          >
+
+            <img
+              src="assets/acharya/siddhant.jpg"
+              alt="सिद्धांत मिश्रा"
+            >
+
+            <h3>
+              सिद्धांत मिश्रा
+            </h3>
+
+          </button>
+
+        </div>
+
+      </section>
+
+    </section>
+
+
+    <!-- ================= ACHARYA ================= -->
+
+    <section id="acharyaPage" class="page">
+
+      <div class="page-heading">
+
+        <span>PERSONAL GUIDANCE</span>
+
+        <h1>हमारे आचार्य</h1>
+
+        <p>
+          प्रत्येक आचार्य की योग्यता, विशेषज्ञता और
+          परामर्श की जानकारी।
+        </p>
+
+      </div>
+
+
+      <div class="acharya-list">
+
+
+        <!-- SHUBHANSHU -->
+
+        <article class="acharya-profile">
+
+          <img
+            src="assets/acharya/shubhanshu.jpg"
+            alt="ज्योतिषाचार्य शुभांशु दुबे"
+          >
+
+          <div class="acharya-details">
+
+            <h2>
+              ज्योतिषाचार्य शुभांशु दुबे
+            </h2>
+
+            <p class="speciality">
+              वैदिक ज्योतिष • जन्म-कुंडली • प्रश्न परामर्श
+            </p>
+
+            <p>
+              <b>योग्यता:</b>
+              यहाँ योग्यता और शिक्षा की जानकारी जोड़ी जाएगी।
+            </p>
+
+            <p>
+              <b>परिचय:</b>
+              यहाँ आचार्य का विस्तृत परिचय जोड़ा जाएगा।
+            </p>
+
+            <div class="social-links">
+
+              <a href="#" target="_blank">
+                Instagram
+              </a>
+
+              <a href="#" target="_blank">
+                Facebook
+              </a>
+
+              <a href="tel:+910000000000">
+                मोबाइल
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- SHRIKANT -->
+
+        <article class="acharya-profile">
+
+          <img
+            src="assets/acharya/shrikant.jpg"
+            alt="श्रीकांत मिश्रा"
+          >
+
+          <div class="acharya-details">
+
+            <h2>श्रीकांत मिश्रा</h2>
+
+            <p class="speciality">
+              वैदिक मार्गदर्शन • संस्कार • शास्त्रीय अध्ययन
+            </p>
+
+            <p>
+              <b>योग्यता:</b>
+              यहाँ योग्यता और शिक्षा की जानकारी जोड़ी जाएगी।
+            </p>
+
+            <p>
+              <b>परिचय:</b>
+              यहाँ आचार्य का विस्तृत परिचय जोड़ा जाएगा।
+            </p>
+
+            <div class="social-links">
+
+              <a href="#" target="_blank">
+                Instagram
+              </a>
+
+              <a href="#" target="_blank">
+                Facebook
+              </a>
+
+              <a href="tel:+910000000000">
+                मोबाइल
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- SIDDHANT -->
+
+        <article class="acharya-profile">
+
+          <img
+            src="assets/acharya/siddhant.jpg"
+            alt="सिद्धांत मिश्रा"
+          >
+
+          <div class="acharya-details">
+
+            <h2>सिद्धांत मिश्रा</h2>
+
+            <p class="speciality">
+              संस्कृत व्याकरण • शास्त्रीय भाषा • अध्ययन
+            </p>
+
+            <p>
+              <b>योग्यता:</b>
+              यहाँ योग्यता और शिक्षा की जानकारी जोड़ी जाएगी।
+            </p>
+
+            <p>
+              <b>परिचय:</b>
+              यहाँ आचार्य का विस्तृत परिचय जोड़ा जाएगा।
+            </p>
+
+            <div class="social-links">
+
+              <a href="#" target="_blank">
+                Instagram
+              </a>
+
+              <a href="#" target="_blank">
+                Facebook
+              </a>
+
+              <a href="tel:+910000000000">
+                मोबाइल
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= CALL ================= -->
+
+    <section id="callPage" class="page">
+
+      <div class="page-heading">
+
+        <span>CONSULTATION</span>
+
+        <h1>कॉल</h1>
+
+        <p>
+          आचार्य चुनें और ऑडियो कॉल या संदेश से संपर्क करें।
+        </p>
+
+      </div>
+
+
+      <div class="call-list">
+
+
+        <article class="call-card">
+
+          <img
+            src="assets/acharya/shubhanshu.jpg"
+            alt=""
+          >
+
+          <div>
+            <h3>ज्योतिषाचार्य शुभांशु दुबे</h3>
+            <span>● Online</span>
+          </div>
+
+          <div class="call-actions">
+
+            <button class="audio-call">
+              ☎
+            </button>
+
+            <button class="message-action">
+              💬
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <article class="call-card">
+
+          <img
+            src="assets/acharya/shrikant.jpg"
+            alt=""
+          >
+
+          <div>
+            <h3>श्रीकांत मिश्रा</h3>
+            <span>● Online</span>
+          </div>
+
+          <div class="call-actions">
+
+            <button class="audio-call">
+              ☎
+            </button>
+
+            <button class="message-action">
+              💬
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <article class="call-card">
+
+          <img
+            src="assets/acharya/siddhant.jpg"
+            alt=""
+          >
+
+          <div>
+            <h3>सिद्धांत मिश्रा</h3>
+            <span>● Online</span>
+          </div>
+
+          <div class="call-actions">
+
+            <button class="audio-call">
+              ☎
+            </button>
+
+            <button class="message-action">
+              💬
+            </button>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= KUNDLI ================= -->
+
+    <section id="kundliPage" class="page">
+
+      <div class="page-heading">
+
+        <span>AI + VEDIC</span>
+
+        <h1>अपनी कुंडली तैयार करें</h1>
+
+        <p>
+          अपना जन्म विवरण भरें।
+        </p>
+
+      </div>
+
+
+      <form class="kundli-form">
+
+        <label>
+          नाम
+          <input type="text" placeholder="पूरा नाम">
+        </label>
+
+        <label>
+          जन्म तारीख
+          <input type="date">
+        </label>
+
+        <label>
+          जन्म समय
+          <input type="time">
+        </label>
+
+        <label>
+          जन्म स्थान
+          <input
+            type="text"
+            placeholder="शहर / स्थान"
+          >
+        </label>
+
+        <button class="gold-btn">
+          कुंडली तैयार करें
+        </button>
+
+      </form>
+
+    </section>
+
+
+    <!-- ================= AI MESSAGE ================= -->
+
+    <section id="aiMessagePage" class="page">
+
+      <div class="page-heading">
+
+        <span>AI GUIDANCE</span>
+
+        <h1>AI से बात करें</h1>
+
+        <p>
+          अपने प्रश्न पूछें और AI से मार्गदर्शन प्राप्त करें।
+        </p>
+
+      </div>
+
+
+      <div class="ai-chat">
+
+        <div id="aiMessages" class="ai-messages">
+
+          <div class="ai-welcome">
+            नमस्कार 🙏<br>
+            मैं आपकी किस विषय में सहायता करूँ?
+          </div>
+
+        </div>
+
+
+        <div class="ai-input">
+
+          <input
+            id="aiInput"
+            type="text"
+            placeholder="अपना प्रश्न लिखें..."
+          >
+
+          <button id="aiSend">
+            ➤
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= ACCOUNT ================= -->
+
+    <section id="accountPage" class="page">
+
+      <div class="page-heading">
+
+        <span>ACCOUNT</span>
+
+        <h1>मेरा अकाउंट</h1>
+
+      </div>
+
+
+      <div class="account-profile">
+
+        <div id="bigProfileLetter">
+          G
+        </div>
+
+        <div>
+
+          <h2 id="accountName">
+            उपयोगकर्ता
+          </h2>
+
+          <p id="accountEmail">
+            user@example.com
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="settings-list">
+
+        <button id="languageSetting">
+
+          <span>🌐</span>
+
+          <div>
+            <b>भाषा</b>
+            <small>भाषा बदलें</small>
+          </div>
+
+          <strong>›</strong>
+
+        </button>
+
+
+        <button id="themeSetting">
+
+          <span>◐</span>
+
+          <div>
+            <b>थीम</b>
+            <small>Light / Dark</small>
+          </div>
+
+          <strong>›</strong>
+
+        </button>
+
+      </div>
+
+
+      <button id="logoutButton" class="logout-btn">
+        Logout
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <!-- =================================================
+       BOTTOM NAVIGATION
+  ================================================== -->
+
+  <nav class="bottom-nav">
+
+    <button data-page="home" class="nav-active">
+      <span>⌂</span>
+      <small>होम</small>
+    </button>
+
+    <button data-page="acharya">
+      <span>ॐ</span>
+      <small>आचार्य</small>
+    </button>
+
+    <button data-page="call" class="call-nav">
+      <span>☎</span>
+      <small>कॉल</small>
+    </button>
+
+    <button data-page="kundli">
+      <span>◉</span>
+      <small>कुंडली</small>
+    </button>
+
+    <button data-page="aiMessage">
+      <span>💬</span>
+      <small>संदेश</small>
+    </button>
+
+  </nav>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+  </html>
