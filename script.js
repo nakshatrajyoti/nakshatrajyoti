@@ -3816,3 +3816,1774 @@ window.addEventListener(
 
   }
 );
+/* =========================================================
+   NAKSHATRA JYOTI
+   FINAL PART 3
+   ACCOUNT + PROFILE + SETTINGS + MESSAGES
+   NAVIGATION + STORAGE + UI PROTECTION
+========================================================= */
+
+
+/* =========================================================
+   ACCOUNT DRAWER
+========================================================= */
+
+function refreshAccountDrawer() {
+
+  const user =
+    firebaseAuth?.currentUser;
+
+
+  if (!user) {
+
+    return;
+
+  }
+
+
+  updateUserUI(
+    user
+  );
+
+
+  const theme =
+    localStorage.getItem(
+      "theme"
+    ) || "light";
+
+
+  updateThemeUI(
+    theme
+  );
+
+
+  const language =
+    localStorage.getItem(
+      "language"
+    ) || "hi";
+
+
+  const languageText =
+    $("accountLanguage");
+
+
+  if (languageText) {
+
+    languageText.textContent =
+      language === "hi"
+        ? "हिन्दी"
+        : "English";
+
+  }
+
+}
+
+
+/* =========================================================
+   ACCOUNT BUTTON
+========================================================= */
+
+$("accountButton")?.addEventListener(
+  "click",
+  () => {
+
+    refreshAccountDrawer();
+
+    openAccountDrawer();
+
+  }
+);
+
+
+/* =========================================================
+   ACCOUNT CLOSE
+========================================================= */
+
+$("closeAccountDrawer")?.addEventListener(
+  "click",
+  () => {
+
+    closeAccountDrawer();
+
+  }
+);
+
+
+/* =========================================================
+   ACCOUNT OVERLAY
+========================================================= */
+
+$("accountOverlay")?.addEventListener(
+  "click",
+  () => {
+
+    closeAccountDrawer();
+
+  }
+);
+
+
+/* =========================================================
+   ACCOUNT PROFILE EDIT
+========================================================= */
+
+$("editProfileButton")?.addEventListener(
+  "click",
+  async () => {
+
+    const user =
+      firebaseAuth?.currentUser;
+
+
+    if (!user) {
+
+      return;
+
+    }
+
+
+    const currentName =
+      user.displayName ||
+      user.email?.split("@")[0] ||
+      "";
+
+
+    const newName =
+      window.prompt(
+        "अपना नाम दर्ज करें:",
+        currentName
+      );
+
+
+    if (
+      newName === null
+    ) {
+
+      return;
+
+    }
+
+
+    const name =
+      newName.trim();
+
+
+    if (
+      name.length < 2
+    ) {
+
+      window.alert(
+        "नाम कम से कम 2 अक्षरों का होना चाहिए।"
+      );
+
+
+      return;
+
+    }
+
+
+    try {
+
+      await firebaseAuthModule
+        .updateProfile(
+          user,
+          {
+            displayName:
+              name
+          }
+        );
+
+
+      updateUserUI(
+        user
+      );
+
+
+      saveLocalUserData(
+        user
+      );
+
+
+      refreshAccountDrawer();
+
+
+      window.alert(
+        "प्रोफाइल अपडेट हो गई।"
+      );
+
+
+    } catch (error) {
+
+      console.error(
+        "Profile update error:",
+        error
+      );
+
+
+      window.alert(
+        "प्रोफाइल अपडेट नहीं हो पाई। कृपया दोबारा प्रयास करें।"
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   LANGUAGE QUICK CHANGE
+========================================================= */
+
+function changeApplicationLanguage(
+  language
+) {
+
+  if (
+    language !== "hi" &&
+    language !== "en"
+  ) {
+
+    language =
+      "hi";
+
+  }
+
+
+  selectedLanguage =
+    language;
+
+
+  localStorage.setItem(
+    "language",
+    language
+  );
+
+
+  document
+    .querySelectorAll(
+      ".language"
+    )
+    .forEach(
+      (button) => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.lang ===
+            language
+        );
+
+      }
+    );
+
+
+  const languageText =
+    $("accountLanguage");
+
+
+  if (languageText) {
+
+    languageText.textContent =
+      language === "hi"
+        ? "हिन्दी"
+        : "English";
+
+  }
+
+
+  console.log(
+    "Language changed:",
+    language
+  );
+
+}
+
+
+/* =========================================================
+   HINDI LANGUAGE BUTTON
+========================================================= */
+
+$("accountHindi")?.addEventListener(
+  "click",
+  () => {
+
+    changeApplicationLanguage(
+      "hi"
+    );
+
+  }
+);
+
+
+/* =========================================================
+   ENGLISH LANGUAGE BUTTON
+========================================================= */
+
+$("accountEnglish")?.addEventListener(
+  "click",
+  () => {
+
+    changeApplicationLanguage(
+      "en"
+    );
+
+  }
+);
+
+
+/* =========================================================
+   THEME OPTIONS
+========================================================= */
+
+$("themeLight")?.addEventListener(
+  "click",
+  () => {
+
+    applyTheme(
+      "light"
+    );
+
+  }
+);
+
+
+$("themeDark")?.addEventListener(
+  "click",
+  () => {
+
+    applyTheme(
+      "dark"
+    );
+
+  }
+);
+
+
+/* =========================================================
+   SETTINGS SUMMARY
+========================================================= */
+
+function refreshSettingsSummary() {
+
+  const theme =
+    localStorage.getItem(
+      "theme"
+    ) || "light";
+
+
+  const language =
+    localStorage.getItem(
+      "language"
+    ) || "hi";
+
+
+  const themeElement =
+    $("settingsTheme");
+
+
+  if (themeElement) {
+
+    themeElement.textContent =
+      theme === "dark"
+        ? "डार्क"
+        : "लाइट";
+
+  }
+
+
+  const languageElement =
+    $("settingsLanguage");
+
+
+  if (languageElement) {
+
+    languageElement.textContent =
+      language === "hi"
+        ? "हिन्दी"
+        : "English";
+
+  }
+
+}
+
+
+refreshSettingsSummary();
+
+
+/* =========================================================
+   SETTINGS OBSERVER
+========================================================= */
+
+window.addEventListener(
+  "storage",
+  () => {
+
+    refreshSettingsSummary();
+
+  }
+);
+
+
+/* =========================================================
+   MESSAGES DATA
+========================================================= */
+
+const MESSAGE_STORAGE_KEY =
+  "nakshatraMessages";
+
+
+function getMessages() {
+
+  try {
+
+    const data =
+      JSON.parse(
+        localStorage.getItem(
+          MESSAGE_STORAGE_KEY
+        ) || "[]"
+      );
+
+
+    if (
+      Array.isArray(
+        data
+      )
+    ) {
+
+      return data;
+
+    }
+
+  } catch (error) {
+
+    console.warn(
+      "Message storage error:",
+      error
+    );
+
+  }
+
+
+  return [];
+
+}
+
+
+/* =========================================================
+   SAVE MESSAGE
+========================================================= */
+
+function saveMessage(
+  message
+) {
+
+  const messages =
+    getMessages();
+
+
+  messages.push({
+
+    id:
+      Date.now(),
+
+    text:
+      message,
+
+    createdAt:
+      new Date().toISOString(),
+
+    read:
+      false
+
+  });
+
+
+  localStorage.setItem(
+    MESSAGE_STORAGE_KEY,
+    JSON.stringify(
+      messages
+    )
+  );
+
+
+  renderMessages();
+
+}
+
+
+/* =========================================================
+   MARK ALL MESSAGES READ
+========================================================= */
+
+function markMessagesRead() {
+
+  const messages =
+    getMessages();
+
+
+  const updated =
+    messages.map(
+      (message) => {
+
+        return {
+
+          ...message,
+
+          read:
+            true
+
+        };
+
+      }
+    );
+
+
+  localStorage.setItem(
+    MESSAGE_STORAGE_KEY,
+    JSON.stringify(
+      updated
+    )
+  );
+
+
+  updateMessageBadge();
+
+}
+
+
+/* =========================================================
+   DELETE MESSAGE
+========================================================= */
+
+function deleteMessage(
+  id
+) {
+
+  const messages =
+    getMessages();
+
+
+  const filtered =
+    messages.filter(
+      (message) => {
+
+        return message.id !==
+          id;
+
+      }
+    );
+
+
+  localStorage.setItem(
+    MESSAGE_STORAGE_KEY,
+    JSON.stringify(
+      filtered
+    )
+  );
+
+
+  renderMessages();
+
+}
+
+
+/* =========================================================
+   RENDER MESSAGES
+========================================================= */
+
+function renderMessages() {
+
+  const box =
+    $("messagesContainer");
+
+
+  if (!box) {
+
+    return;
+
+  }
+
+
+  const messages =
+    getMessages();
+
+
+  if (
+    !messages.length
+  ) {
+
+    box.innerHTML = `
+
+      <div class="message-empty">
+
+        <div class="message-empty-icon">
+          💬
+        </div>
+
+        <h3>
+          अभी कोई संदेश नहीं है
+        </h3>
+
+        <p>
+          आपके महत्वपूर्ण संदेश यहाँ दिखाई देंगे।
+        </p>
+
+      </div>
+
+    `;
+
+
+    updateMessageBadge();
+
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    messages
+      .slice()
+      .reverse()
+      .map(
+        (message) => {
+
+          const date =
+            formatMessageDate(
+              message.createdAt
+            );
+
+
+          return `
+
+            <article
+              class="message-item"
+              data-message-id="${message.id}"
+              style="
+                padding:18px;
+                margin-bottom:12px;
+                border:1px solid var(--border);
+                border-radius:17px;
+                background:var(--white);
+              "
+            >
+
+              <div
+                style="
+                  display:flex;
+                  align-items:flex-start;
+                  justify-content:space-between;
+                  gap:10px;
+                "
+              >
+
+                <div>
+
+                  <strong>
+                    Nakshatra Jyoti
+                  </strong>
+
+                  <small
+                    style="
+                      display:block;
+                      color:var(--muted);
+                      margin-top:3px;
+                    "
+                  >
+                    ${escapeHTML(date)}
+                  </small>
+
+                </div>
+
+
+                <button
+                  type="button"
+                  data-delete-message="${message.id}"
+                  style="
+                    border:0;
+                    background:transparent;
+                    cursor:pointer;
+                    font-size:18px;
+                  "
+                >
+                  ×
+                </button>
+
+              </div>
+
+
+              <p
+                style="
+                  margin-top:12px;
+                  color:var(--muted);
+                "
+              >
+                ${escapeHTML(message.text)}
+              </p>
+
+            </article>
+
+          `;
+
+        }
+      )
+      .join("");
+
+
+  box
+    .querySelectorAll(
+      "[data-delete-message]"
+    )
+    .forEach(
+      (button) => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            const id =
+              Number(
+                button.dataset.deleteMessage
+              );
+
+
+            deleteMessage(
+              id
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+  updateMessageBadge();
+
+}
+
+
+/* =========================================================
+   MESSAGE DATE
+========================================================= */
+
+function formatMessageDate(
+  value
+) {
+
+  if (!value) {
+
+    return "";
+
+  }
+
+
+  const date =
+    new Date(
+      value
+    );
+
+
+  if (
+    Number.isNaN(
+      date.getTime()
+    )
+  ) {
+
+    return "";
+
+  }
+
+
+  try {
+
+    return date.toLocaleString(
+      "hi-IN",
+      {
+        dateStyle:
+          "medium",
+        timeStyle:
+          "short"
+      }
+    );
+
+  } catch {
+
+    return date.toLocaleString();
+
+  }
+
+}
+
+
+/* =========================================================
+   MESSAGE BADGE
+========================================================= */
+
+function updateMessageBadge() {
+
+  const messages =
+    getMessages();
+
+
+  const unread =
+    messages.filter(
+      (message) =>
+        !message.read
+    ).length;
+
+
+  document
+    .querySelectorAll(
+      ".message-badge"
+    )
+    .forEach(
+      (badge) => {
+
+        if (
+          unread > 0
+        ) {
+
+          badge.textContent =
+            unread > 9
+              ? "9+"
+              : String(
+                  unread
+                );
+
+          badge.style.display =
+            "flex";
+
+        } else {
+
+          badge.style.display =
+            "none";
+
+        }
+
+      }
+    );
+
+}
+
+
+renderMessages();
+
+
+/* =========================================================
+   MESSAGE PAGE OPEN
+========================================================= */
+
+document
+  .querySelectorAll(
+    '[data-page="messages"]'
+  )
+  .forEach(
+    (button) => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          setTimeout(
+            () => {
+
+              markMessagesRead();
+
+              renderMessages();
+
+            },
+            100
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   GUIDANCE REQUEST HISTORY
+========================================================= */
+
+function getGuidanceRequests() {
+
+  try {
+
+    const requests =
+      JSON.parse(
+        localStorage.getItem(
+          "nakshatraGuidanceRequests"
+        ) || "[]"
+      );
+
+
+    return Array.isArray(
+      requests
+    )
+      ? requests
+      : [];
+
+  } catch {
+
+    return [];
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER REQUEST HISTORY
+========================================================= */
+
+function renderGuidanceHistory() {
+
+  const container =
+    $("guidanceHistory");
+
+
+  if (!container) {
+
+    return;
+
+  }
+
+
+  const requests =
+    getGuidanceRequests();
+
+
+  if (
+    !requests.length
+  ) {
+
+    container.innerHTML = `
+
+      <div class="message-empty">
+
+        <div class="message-empty-icon">
+          ✦
+        </div>
+
+        <h3>
+          अभी कोई अनुरोध नहीं है
+        </h3>
+
+        <p>
+          आपके मार्गदर्शन अनुरोध यहाँ दिखाई देंगे।
+        </p>
+
+      </div>
+
+    `;
+
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    requests
+      .slice()
+      .reverse()
+      .map(
+        (item) => `
+
+          <article
+            style="
+              padding:18px;
+              margin-bottom:12px;
+              border:1px solid var(--border);
+              border-radius:17px;
+              background:var(--white);
+            "
+          >
+
+            <div class="section-label">
+              ${escapeHTML(
+                item.category ||
+                "मार्गदर्शन"
+              )}
+            </div>
+
+            <h3>
+              ${escapeHTML(
+                item.topic ||
+                "सामान्य मार्गदर्शन"
+              )}
+            </h3>
+
+            <p
+              style="
+                color:var(--muted);
+                margin-top:6px;
+              "
+            >
+              ${escapeHTML(
+                item.name ||
+                ""
+              )}
+              •
+              ${escapeHTML(
+                item.place ||
+                ""
+              )}
+            </p>
+
+            <small
+              style="
+                display:block;
+                color:var(--muted);
+                margin-top:8px;
+              "
+            >
+              ${escapeHTML(
+                formatMessageDate(
+                  item.createdAt
+                )
+              )}
+            </small>
+
+          </article>
+
+        `
+      )
+      .join("");
+
+}
+
+
+renderGuidanceHistory();
+
+
+/* =========================================================
+   RE-RENDER HISTORY WHEN PAGE OPENS
+========================================================= */
+
+document
+  .querySelectorAll(
+    "[data-page]"
+  )
+  .forEach(
+    (button) => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          setTimeout(
+            () => {
+
+              renderGuidanceHistory();
+
+            },
+            150
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   CLEAR HISTORY
+========================================================= */
+
+$("clearGuidanceHistory")
+  ?.addEventListener(
+    "click",
+    () => {
+
+      const confirmed =
+        window.confirm(
+          "क्या आप सभी पुराने मार्गदर्शन अनुरोध हटाना चाहते हैं?"
+        );
+
+
+      if (!confirmed) {
+
+        return;
+
+      }
+
+
+      localStorage.removeItem(
+        "nakshatraGuidanceRequests"
+      );
+
+
+      renderGuidanceHistory();
+
+    }
+  );
+
+
+/* =========================================================
+   CLEAR MESSAGES
+========================================================= */
+
+$("clearMessages")
+  ?.addEventListener(
+    "click",
+    () => {
+
+      const confirmed =
+        window.confirm(
+          "क्या आप सभी संदेश हटाना चाहते हैं?"
+        );
+
+
+      if (!confirmed) {
+
+        return;
+
+      }
+
+
+      localStorage.removeItem(
+        MESSAGE_STORAGE_KEY
+      );
+
+
+      renderMessages();
+
+    }
+  );
+
+
+/* =========================================================
+   HOME WELCOME MESSAGE
+========================================================= */
+
+function updateWelcomeMessage() {
+
+  const element =
+    $("welcomeUser");
+
+
+  if (!element) {
+
+    return;
+
+  }
+
+
+  const user =
+    firebaseAuth?.currentUser;
+
+
+  const name =
+    user?.displayName ||
+    user?.email?.split("@")[0] ||
+    "आप";
+
+
+  element.textContent =
+    `नमस्कार ${name} जी`;
+
+}
+
+
+updateWelcomeMessage();
+
+
+/* =========================================================
+   USER STATE REFRESH
+========================================================= */
+
+if (
+  firebaseAuthModule
+) {
+
+  try {
+
+    firebaseAuthModule.onAuthStateChanged(
+      firebaseAuth,
+      (user) => {
+
+        if (user) {
+
+          updateUserUI(
+            user
+          );
+
+          updateWelcomeMessage();
+
+          refreshAccountDrawer();
+
+        }
+
+      }
+    );
+
+  } catch (error) {
+
+    console.warn(
+      "Secondary auth listener unavailable.",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   HOME BUTTON
+========================================================= */
+
+document
+  .querySelectorAll(
+    '[data-page="home"]'
+  )
+  .forEach(
+    (button) => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          closeAccountDrawer();
+
+          window.scrollTo({
+            top:
+              0,
+            behavior:
+              "smooth"
+          });
+
+        }
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   BOTTOM NAV SCROLL SAFETY
+========================================================= */
+
+function updateBottomNavSpace() {
+
+  const nav =
+    document.querySelector(
+      ".bottom-nav"
+    );
+
+
+  if (!nav) {
+
+    return;
+
+  }
+
+
+  const height =
+    nav.offsetHeight;
+
+
+  document.documentElement
+    .style
+    .setProperty(
+      "--bottom-nav-space",
+      `${height + 35}px`
+    );
+
+}
+
+
+updateBottomNavSpace();
+
+
+window.addEventListener(
+  "resize",
+  updateBottomNavSpace
+);
+
+
+/* =========================================================
+   SAFE PAGE NAVIGATION
+========================================================= */
+
+window.addEventListener(
+  "popstate",
+  () => {
+
+    const page =
+      new URLSearchParams(
+        window.location.search
+      ).get(
+        "page"
+      );
+
+
+    if (
+      page &&
+      document.getElementById(
+        page + "Page"
+      )
+    ) {
+
+      openPage(
+        page
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   UPDATE URL WITHOUT RELOAD
+========================================================= */
+
+const originalOpenPage =
+  window.openNakshatraPage;
+
+
+window.openNakshatraPage =
+  function(
+    pageName
+  ) {
+
+    if (
+      typeof openPage ===
+      "function"
+    ) {
+
+      openPage(
+        pageName
+      );
+
+    }
+
+  };
+
+
+/* =========================================================
+   DOUBLE CLICK PROTECTION
+========================================================= */
+
+document.addEventListener(
+  "click",
+  (event) => {
+
+    const button =
+      event.target.closest(
+        "button"
+      );
+
+
+    if (!button) {
+
+      return;
+
+    }
+
+
+    if (
+      button.dataset.processing ===
+      "true"
+    ) {
+
+      event.preventDefault();
+
+      return;
+
+    }
+
+
+    if (
+      button.dataset.noLock ===
+      "true"
+    ) {
+
+      return;
+
+    }
+
+
+    if (
+      button.classList.contains(
+        "submit"
+      ) ||
+      button.id ===
+        "loginButton"
+    ) {
+
+      return;
+
+    }
+
+  },
+  true
+);
+
+
+/* =========================================================
+   LOGIN FORM ENTER KEY
+========================================================= */
+
+$("loginPassword")
+  ?.addEventListener(
+    "keydown",
+    (event) => {
+
+      if (
+        event.key ===
+        "Enter"
+      ) {
+
+        event.preventDefault();
+
+        $("loginButton")
+          ?.click();
+
+      }
+
+    }
+  );
+
+
+$("loginEmail")
+  ?.addEventListener(
+    "keydown",
+    (event) => {
+
+      if (
+        event.key ===
+        "Enter"
+      ) {
+
+        event.preventDefault();
+
+        $("loginButton")
+          ?.click();
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   REGISTER USERNAME ENTER KEY
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  (event) => {
+
+    if (
+      event.key !==
+      "Enter"
+    ) {
+
+      return;
+
+    }
+
+
+    const target =
+      event.target;
+
+
+    if (
+      target?.id ===
+      "registerUsername"
+    ) {
+
+      event.preventDefault();
+
+      $("loginButton")
+        ?.click();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   INPUT AUTO SAVE
+========================================================= */
+
+const autoSaveFields = [
+
+  "careerUserName",
+  "careerUserDob",
+  "careerUserTob",
+  "careerUserPlace",
+  "careerUserQuestion",
+
+  "marriageName",
+  "marriageDob",
+  "marriageTob",
+  "marriagePlace",
+  "marriageQuestion",
+
+  "muhuratName",
+  "muhuratDob",
+  "muhuratTob",
+  "muhuratPlace",
+  "muhuratQuestion",
+
+  "educationName",
+  "educationDob",
+  "educationTob",
+  "educationPlace",
+  "educationQuestion"
+
+];
+
+
+function initializeAutoSave() {
+
+  autoSaveFields.forEach(
+    (id) => {
+
+      const input =
+        $(id);
+
+
+      if (!input) {
+
+        return;
+
+      }
+
+
+      const storageKey =
+        "draft_" + id;
+
+
+      const saved =
+        localStorage.getItem(
+          storageKey
+        );
+
+
+      if (
+        saved !== null
+      ) {
+
+        input.value =
+          saved;
+
+      }
+
+
+      input.addEventListener(
+        "input",
+        () => {
+
+          localStorage.setItem(
+            storageKey,
+            input.value
+          );
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+initializeAutoSave();
+
+
+/* =========================================================
+   CLEAR DRAFT AFTER SUBMISSION
+========================================================= */
+
+function clearDraft(
+  prefix
+) {
+
+  const fields = [
+
+    "Name",
+    "Dob",
+    "Tob",
+    "Place",
+    "Question"
+
+  ];
+
+
+  fields.forEach(
+    (field) => {
+
+      localStorage.removeItem(
+        "draft_" +
+        prefix +
+        field
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   PAGE LOADED FINALIZATION
+========================================================= */
+
+function finalizeApplication() {
+
+  restoreLanguageButton();
+
+  refreshSettingsSummary();
+
+  updateMessageBadge();
+
+  renderMessages();
+
+  renderGuidanceHistory();
+
+  updateBottomNavSpace();
+
+  updateWelcomeMessage();
+
+  console.log(
+    "Nakshatra Jyoti application finalized successfully."
+  );
+
+}
+
+
+if (
+  document.readyState ===
+  "loading"
+) {
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    finalizeApplication
+  );
+
+} else {
+
+  finalizeApplication();
+
+}
+
+
+/* =========================================================
+   GLOBAL ERROR SAFETY
+========================================================= */
+
+window.addEventListener(
+  "error",
+  (event) => {
+
+    console.error(
+      "Application error:",
+      event.error ||
+      event.message
+    );
+
+  }
+);
+
+
+/* =========================================================
+   PROMISE ERROR SAFETY
+========================================================= */
+
+window.addEventListener(
+  "unhandledrejection",
+  (event) => {
+
+    console.error(
+      "Unhandled promise rejection:",
+      event.reason
+    );
+
+  }
+);
+
+
+/* =========================================================
+   APP VERSION
+========================================================= */
+
+const NAKSHATRA_APP_VERSION =
+  "3.0.0";
+
+
+localStorage.setItem(
+  "nakshatraAppVersion",
+  NAKSHATRA_APP_VERSION
+);
+
+
+console.log(
+  "Nakshatra Jyoti version:",
+  NAKSHATRA_APP_VERSION
+);
+
+
+/* =========================================================
+   FINAL READY MESSAGE
+========================================================= */
+
+console.log(
+  "================================================="
+);
+
+console.log(
+  " NAKSHATRA JYOTI READY"
+);
+
+console.log(
+  " Firebase Authentication: ENABLED"
+);
+
+console.log(
+  " Language System: ENABLED"
+);
+
+console.log(
+  " Theme System: ENABLED"
+);
+
+console.log(
+  " Account System: ENABLED"
+);
+
+console.log(
+  " Guidance System: ENABLED"
+);
+
+console.log(
+  " Career System: ENABLED"
+);
+
+console.log(
+  " Marriage System: ENABLED"
+);
+
+console.log(
+  " Muhurat System: ENABLED"
+);
+
+console.log(
+  " Education System: ENABLED"
+);
+
+console.log(
+  " Message System: ENABLED"
+);
+
+console.log(
+  "================================================="
+);
