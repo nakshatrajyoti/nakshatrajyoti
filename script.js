@@ -2791,35 +2791,31 @@ function getSelectedTopic(
    SAVE GUIDANCE REQUEST
 ========================================================= */
 
-function saveGuidanceRequest(
-  request
-) {
+/* =========================================================
+   SAVE GUIDANCE REQUEST
+   LOCAL + FIRESTORE
+========================================================= */
+
+async function saveGuidanceRequest(request) {
 
   const key =
     "nakshatraGuidanceRequests";
 
+  /* -----------------------------------------
+     LOCAL BACKUP
+  ----------------------------------------- */
 
   let requests = [];
-
 
   try {
 
     requests =
       JSON.parse(
-        localStorage.getItem(
-          key
-        ) || "[]"
+        localStorage.getItem(key) || "[]"
       );
 
-
-    if (
-      !Array.isArray(
-        requests
-      )
-    ) {
-
+    if (!Array.isArray(requests)) {
       requests = [];
-
     }
 
   } catch {
@@ -2828,32 +2824,77 @@ function saveGuidanceRequest(
 
   }
 
+  requests.push(request);
 
-  requests.push(
-    request
-  );
-
-
-  if (
-    requests.length > 30
-  ) {
-
-    requests =
-      requests.slice(
-        -30
-      );
-
+  if (requests.length > 30) {
+    requests = requests.slice(-30);
   }
-
 
   localStorage.setItem(
     key,
-    JSON.stringify(
-      requests
-    )
+    JSON.stringify(requests)
   );
 
-}
+
+  /* -----------------------------------------
+     FIRESTORE
+  ----------------------------------------- */
+
+  try {
+
+    const user =
+      firebaseAuth?.currentUser || null;
+
+    if (
+      !user ||
+      !firebaseReady ||
+      !firebaseDb ||
+      !firebaseFirestoreModule
+    ) {
+
+      console.warn(
+        "Guidance: Firebase user/database not ready."
+      );
+
+      return false;
+    }
+
+
+    await firebaseFirestoreModule.addDoc(
+      firebaseFirestoreModule.collection(
+        firebaseDb,
+        "guidanceRequests"
+      ),
+      {
+        ...request,
+
+        userId: user.uid,
+
+        userEmail:
+          user.email || "",
+
+        createdAt:
+          firebaseFirestoreModule.serverTimestamp()
+      }
+    );
+
+
+    console.log(
+      "Guidance request saved to Firestore."
+    );
+
+    return true;
+
+  } catch (error) {
+
+    console.error(
+      "Guidance Firestore save error:",
+      error
+    );
+
+    return false;
+  }
+   }
 
 
 /* =========================================================
