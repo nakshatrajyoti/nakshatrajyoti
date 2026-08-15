@@ -84,10 +84,20 @@
     </div>
 
     <button
-      id="languageContinue"
-      class="primary-button"
-    >
-      आगे बढ़ें
+  id="languageContinue"
+  class="primary-button"
+  type="button"
+  onclick="
+    localStorage.setItem(
+      'language',
+      document.querySelector('.language.active')?.dataset.lang || 'hi'
+    );
+    document.getElementById('languageScreen').classList.add('hidden');
+    document.getElementById('loginScreen').classList.remove('hidden');
+    document.getElementById('mainApp').classList.add('hidden');
+  "
+>
+  आगे बढ़ें
     </button>
 
     <p class="privacy-note">
