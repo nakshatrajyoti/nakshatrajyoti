@@ -4955,3 +4955,434 @@ body.dark .drawer-logout {
   }
 
 }
+/* =========================================================
+   CALL PAGE — FINAL OVERRIDE
+   इस code को style.css के बिल्कुल सबसे नीचे रखें
+========================================================= */
+
+/* Call page की सभी बड़ी images को रोकना */
+#callPage img {
+  width: 78px !important;
+  height: 78px !important;
+
+  min-width: 78px !important;
+  max-width: 78px !important;
+
+  min-height: 78px !important;
+  max-height: 78px !important;
+
+  object-fit: cover !important;
+
+  border-radius: 50% !important;
+
+  border: 3px solid var(--gold) !important;
+
+  display: block !important;
+
+  flex: 0 0 78px !important;
+}
+
+
+/* =========================================================
+   CALL CARDS
+========================================================= */
+
+#callPage article,
+#callPage .acharya-detail,
+#callPage .call-card,
+#callPage .acharya-card {
+
+  width: 100% !important;
+
+  min-height: 105px !important;
+
+  height: auto !important;
+
+  display: flex !important;
+
+  flex-direction: row !important;
+
+  align-items: center !important;
+
+  gap: 16px !important;
+
+  padding: 13px !important;
+
+  margin-bottom: 14px !important;
+
+  background: #ffffff !important;
+
+  border: 1px solid var(--border) !important;
+
+  border-radius: 20px !important;
+
+  box-shadow:
+    0 8px 25px rgba(70, 50, 20, .07) !important;
+
+  overflow: hidden !important;
+
+  box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   CARD के अंदर IMAGE
+========================================================= */
+
+#callPage article img,
+#callPage .acharya-detail img,
+#callPage .call-card img,
+#callPage .acharya-card img {
+
+  width: 78px !important;
+
+  height: 78px !important;
+
+  min-width: 78px !important;
+
+  max-width: 78px !important;
+
+  min-height: 78px !important;
+
+  max-height: 78px !important;
+
+  flex: 0 0 78px !important;
+
+  object-fit: cover !important;
+
+  object-position: center !important;
+
+  border-radius: 50% !important;
+
+  border: 3px solid var(--gold) !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+}
+
+
+/* =========================================================
+   INFORMATION AREA
+========================================================= */
+
+#callPage article > div,
+#callPage .acharya-detail > div,
+#callPage .call-card > div {
+
+  flex: 1 1 auto !important;
+
+  min-width: 0 !important;
+
+  width: auto !important;
+
+  padding: 0 !important;
+
+  margin: 0 !important;
+}
+
+
+/* =========================================================
+   ACHARYA NAME
+========================================================= */
+
+#callPage article h2,
+#callPage article h3,
+#callPage .acharya-detail h2,
+#callPage .call-card h2,
+#callPage .call-card h3 {
+
+  font-size: 19px !important;
+
+  line-height: 1.3 !important;
+
+  margin: 0 0 5px 0 !important;
+
+  padding: 0 !important;
+
+  white-space: normal !important;
+
+  color: var(--text) !important;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+#callPage article p,
+#callPage .acharya-detail p,
+#callPage .call-card p {
+
+  font-size: 12px !important;
+
+  line-height: 1.4 !important;
+
+  margin: 2px 0 !important;
+
+  padding: 0 !important;
+
+  color: var(--muted) !important;
+}
+
+
+/* =========================================================
+   BUTTON AREA
+========================================================= */
+
+#callPage .social-buttons,
+#callPage .call-actions {
+
+  display: flex !important;
+
+  flex-direction: row !important;
+
+  align-items: center !important;
+
+  justify-content: flex-end !important;
+
+  gap: 7px !important;
+
+  flex: 0 0 auto !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+}
+
+
+/* =========================================================
+   CALL / MESSAGE BUTTONS
+========================================================= */
+
+#callPage .social-buttons button,
+#callPage .call-actions button {
+
+  width: auto !important;
+
+  min-width: 64px !important;
+
+  height: 38px !important;
+
+  padding: 7px 10px !important;
+
+  margin: 0 !important;
+
+  border-radius: 10px !important;
+
+  border: 1px solid var(--border) !important;
+
+  background: #ffffff !important;
+
+  color: var(--text) !important;
+
+  font-size: 12px !important;
+
+  font-weight: 700 !important;
+
+  white-space: nowrap !important;
+
+  box-shadow: none !important;
+}
+
+
+/* पहला button CALL */
+#callPage .social-buttons button:first-child,
+#callPage .call-actions button:first-child {
+
+  background: var(--gold) !important;
+
+  border-color: var(--gold) !important;
+
+  color: #17130d !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  #callPage {
+
+    padding:
+      25px
+      10px
+      140px !important;
+  }
+
+
+  #callPage article,
+  #callPage .acharya-detail,
+  #callPage .call-card,
+  #callPage .acharya-card {
+
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    align-items: center !important;
+
+    gap: 10px !important;
+
+    min-height: 86px !important;
+
+    padding: 10px !important;
+
+    margin-bottom: 10px !important;
+
+    border-radius: 16px !important;
+  }
+
+
+  /* MOBILE ROUND PHOTO */
+
+  #callPage img,
+  #callPage article img,
+  #callPage .acharya-detail img,
+  #callPage .call-card img,
+  #callPage .acharya-card img {
+
+    width: 60px !important;
+
+    height: 60px !important;
+
+    min-width: 60px !important;
+
+    max-width: 60px !important;
+
+    min-height: 60px !important;
+
+    max-height: 60px !important;
+
+    flex: 0 0 60px !important;
+
+    border-radius: 50% !important;
+
+    border-width: 2px !important;
+
+    object-fit: cover !important;
+  }
+
+
+  #callPage article h2,
+  #callPage article h3,
+  #callPage .acharya-detail h2,
+  #callPage .call-card h2,
+  #callPage .call-card h3 {
+
+    font-size: 15px !important;
+
+    line-height: 1.25 !important;
+
+    margin-bottom: 3px !important;
+  }
+
+
+  #callPage article p,
+  #callPage .acharya-detail p,
+  #callPage .call-card p {
+
+    font-size: 10px !important;
+
+    line-height: 1.25 !important;
+  }
+
+
+  #callPage .social-buttons,
+  #callPage .call-actions {
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: stretch !important;
+
+    justify-content: center !important;
+
+    gap: 4px !important;
+
+    margin-left: auto !important;
+  }
+
+
+  #callPage .social-buttons button,
+  #callPage .call-actions button {
+
+    width: 62px !important;
+
+    min-width: 62px !important;
+
+    height: 30px !important;
+
+    padding: 4px 5px !important;
+
+    font-size: 10px !important;
+
+    border-radius: 8px !important;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+  #callPage article,
+  #callPage .acharya-detail,
+  #callPage .call-card {
+
+    gap: 7px !important;
+
+    padding: 8px !important;
+  }
+
+
+  #callPage img,
+  #callPage article img,
+  #callPage .acharya-detail img,
+  #callPage .call-card img {
+
+    width: 52px !important;
+
+    height: 52px !important;
+
+    min-width: 52px !important;
+
+    max-width: 52px !important;
+
+    min-height: 52px !important;
+
+    max-height: 52px !important;
+
+    flex-basis: 52px !important;
+  }
+
+
+  #callPage article h2,
+  #callPage article h3,
+  #callPage .acharya-detail h2,
+  #callPage .call-card h2,
+  #callPage .call-card h3 {
+
+    font-size: 13px !important;
+  }
+
+
+  #callPage .social-buttons button,
+  #callPage .call-actions button {
+
+    width: 56px !important;
+
+    min-width: 56px !important;
+
+    height: 28px !important;
+
+    font-size: 9px !important;
+  }
+
+}
