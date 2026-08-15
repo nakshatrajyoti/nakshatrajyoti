@@ -2793,7 +2793,7 @@ function getSelectedTopic(
 
 /* =========================================================
    SAVE GUIDANCE REQUEST
-   LOCAL + FIRESTORE
+   LOCAL BACKUP + FIRESTORE
 ========================================================= */
 
 async function saveGuidanceRequest(request) {
@@ -2801,21 +2801,32 @@ async function saveGuidanceRequest(request) {
   const key =
     "nakshatraGuidanceRequests";
 
-  /* -----------------------------------------
+
+  /* =======================================================
      LOCAL BACKUP
-  ----------------------------------------- */
+  ======================================================= */
 
   let requests = [];
+
 
   try {
 
     requests =
       JSON.parse(
-        localStorage.getItem(key) || "[]"
+        localStorage.getItem(
+          key
+        ) || "[]"
       );
 
-    if (!Array.isArray(requests)) {
+
+    if (
+      !Array.isArray(
+        requests
+      )
+    ) {
+
       requests = [];
+
     }
 
   } catch {
@@ -2824,26 +2835,41 @@ async function saveGuidanceRequest(request) {
 
   }
 
-  requests.push(request);
 
-  if (requests.length > 30) {
-    requests = requests.slice(-30);
-  }
-
-  localStorage.setItem(
-    key,
-    JSON.stringify(requests)
+  requests.push(
+    request
   );
 
 
-  /* -----------------------------------------
+  if (
+    requests.length > 30
+  ) {
+
+    requests =
+      requests.slice(
+        -30
+      );
+
+  }
+
+
+  localStorage.setItem(
+    key,
+    JSON.stringify(
+      requests
+    )
+  );
+
+
+  /* =======================================================
      FIRESTORE
-  ----------------------------------------- */
+  ======================================================= */
 
   try {
 
     const user =
       firebaseAuth?.currentUser || null;
+
 
     if (
       !user ||
@@ -2857,25 +2883,32 @@ async function saveGuidanceRequest(request) {
       );
 
       return false;
+
     }
 
 
     await firebaseFirestoreModule.addDoc(
+
       firebaseFirestoreModule.collection(
         firebaseDb,
         "guidanceRequests"
       ),
+
       {
+
         ...request,
 
-        userId: user.uid,
+        userId:
+          user.uid,
 
         userEmail:
           user.email || "",
 
         createdAt:
           firebaseFirestoreModule.serverTimestamp()
+
       }
+
     );
 
 
@@ -2883,7 +2916,9 @@ async function saveGuidanceRequest(request) {
       "Guidance request saved to Firestore."
     );
 
+
     return true;
+
 
   } catch (error) {
 
@@ -2892,9 +2927,12 @@ async function saveGuidanceRequest(request) {
       error
     );
 
+
     return false;
+
   }
-   }
+
+}
 
 
 /* =========================================================
