@@ -4900,7 +4900,7 @@ async function getGuidanceRequests() {
    RENDER REQUEST HISTORY
 ========================================================= */
 
-function renderGuidanceHistory() {
+async function renderGuidanceHistory() {
 
   const container =
     $("guidanceHistory");
@@ -4914,7 +4914,7 @@ function renderGuidanceHistory() {
 
 
   const requests =
-    getGuidanceRequests();
+    await getGuidanceRequests();
 
 
   if (
