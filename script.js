@@ -4853,30 +4853,46 @@ document
    GUIDANCE REQUEST HISTORY
 ========================================================= */
 
-function getGuidanceRequests() {
+async function getGuidanceRequests() {
 
   try {
 
-    const requests =
-      JSON.parse(
-        localStorage.getItem(
-          "nakshatraGuidanceRequests"
-        ) || "[]"
+    const user =
+      firebaseAuth?.currentUser || null;
+
+    if (
+      !user ||
+      !firebaseReady ||
+      !firebaseDb ||
+      !firebaseFirestoreModule
+    ) {
+      return [];
+    }
+
+    const snapshot =
+      await firebaseFirestoreModule.getDocs(
+        firebaseFirestoreModule.collection(
+          firebaseDb,
+          "guidanceRequests"
+        )
       );
 
+    return snapshot.docs.map(
+      (doc) => ({
+        id: doc.id,
+        ...doc.data()
+      })
+    );
 
-    return Array.isArray(
-      requests
-    )
-      ? requests
-      : [];
+  } catch (error) {
 
-  } catch {
+    console.error(
+      "Guidance requests load error:",
+      error
+    );
 
     return [];
-
   }
-
 }
 
 
