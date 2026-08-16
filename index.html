@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#d8a43a">
+  <meta name="description" content="Nakshatra Jyoti — वैदिक ज्योतिष एवं मार्गदर्शन">
+  <title>Nakshatra Jyoti</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     LANGUAGE SCREEN
+========================================================= -->
+
+<section id="languageScreen" class="screen language-screen">
+
+  <div class="language-card">
+
+    <div class="om-logo">ॐ</div>
+
+    <div class="welcome-badge">NAKSHATRA JYOTI</div>
+
+    <h1>Nakshatra Jyoti</h1>
+
+    <p>वैदिक मार्गदर्शन की दुनिया में आपका स्वागत है।</p>
+
+    <div class="language-title">अपनी भाषा चुनें</div>
+
+    <div class="language-list">
+
+      <button class="language active" data-lang="hi" type="button">
+        <span>🇮🇳</span>
+        <strong>हिन्दी</strong>
+        <small>हिन्दी में आगे बढ़ें</small>
+      </button>
+
+      <button class="language" data-lang="en" type="button">
+        <span>🌐</span>
+        <strong>English</strong>
+        <small>Continue in English</small>
+      </button>
+
+    </div>
+
+    <button id="languageContinue" class="primary-button" type="button">
+      आगे बढ़ें
+    </button>
+
+    <p class="privacy-note">
+      आपकी भाषा की पसंद इस डिवाइस पर सुरक्षित रखी जाएगी।
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     LOGIN SCREEN
+========================================================= -->
+
+<section id="loginScreen" class="screen login-screen hidden">
+
+  <div class="login-card">
+
+    <div class="om-logo">ॐ</div>
+
+    <div class="welcome-badge">WELCOME</div>
+
+    <h1>स्वागत है</h1>
+
+    <p class="login-subtitle">
+      Nakshatra Jyoti में अपने मार्गदर्शन का सफर शुरू करें।
+    </p>
+
+    <div class="login-form">
+
+      <input
+        id="loginEmail"
+        type="email"
+        autocomplete="email"
+        placeholder="ईमेल"
+      >
+
+      <input
+        id="loginPassword"
+        type="password"
+        autocomplete="current-password"
+        placeholder="पासवर्ड"
+      >
+
+      <button id="loginButton" class="primary-button" type="button">
+        लॉगिन करें
+      </button>
+
+      <button id="registerButton" class="link-button" type="button">
+        नया अकाउंट बनाएँ
+      </button>
+
+      <div id="loginError" class="error-message"></div>
+
+    </div>
+
+    <div class="login-footer">
+      <span>ॐ</span>
+      <span>ज्ञान</span>
+      <span>मार्गदर्शन</span>
+      <span>विश्वास</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     MAIN APPLICATION
+========================================================= -->
+
+<div id="mainApp" class="hidden">
+
+  <!-- =======================================================
+       TOP HEADER
+  ======================================================= -->
+
+  <header class="top-header">
+
+    <button
+      id="menuButton"
+      class="menu-button"
+      type="button"
+      aria-label="मेन्यू खोलें"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="brand" data-page="home">
+
+      <div class="brand-logo">ॐ</div>
+
+      <div class="brand-text">
+        <strong>Nakshatra Jyoti</strong>
+        <span>वैदिक मार्गदर्शन</span>
+      </div>
+
+    </div>
+
+    <button
+      id="accountButton"
+      class="profile-button"
+      type="button"
+      aria-label="मेरा अकाउंट"
+    >
+      <span id="profileLetter">U</span>
+    </button>
+
+  </header>
+
+
+  <!-- =======================================================
+       SIDE MENU
+  ======================================================= -->
+
+  <div id="menuOverlay" class="menu-overlay"></div>
+
+  <aside id="sideMenu" class="side-menu">
+
+    <div class="side-menu-header">
+
+      <div>
+        <div class="side-menu-brand">ॐ Nakshatra Jyoti</div>
+        <small>वैदिक मार्गदर्शन</small>
+      </div>
+
+      <button
+        id="closeMenu"
+        class="close-menu"
+        type="button"
+        aria-label="बंद करें"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div class="menu-profile-mini">
+
+      <div id="menuProfileLetter" class="menu-profile-letter">U</div>
+
+      <div>
+        <strong id="menuProfileName">User</strong>
+        <small id="menuProfileEmail">आपका अकाउंट</small>
+      </div>
+
+    </div>
+
+    <div class="menu-section-title">मुख्य</div>
+
+    <button data-page="home" type="button">
+      <span>🏠</span><span>होम</span>
+    </button>
+
+    <button data-page="acharya" type="button">
+      <span>ॐ</span><span>आचार्य</span>
+    </button>
+
+    <button data-page="call" type="button">
+      <span>☎</span><span>कॉल</span>
+    </button>
+
+    <button data-page="kundli" type="button">
+      <span>◉</span><span>कुंडली</span>
+    </button>
+
+    <button data-page="messages" type="button">
+      <span>💬</span><span>संदेश</span>
+      <span class="message-badge" style="display:none">0</span>
+    </button>
+
+    <button data-page="blog" type="button">
+      <span>📝</span><span>आचार्य विचार</span>
+    </button>
+
+    <div class="menu-section-title">सेवाएँ</div>
+
+    <button data-page="career" type="button">
+      <span>💼</span><span>करियर मार्गदर्शन</span>
+    </button>
+
+    <button data-page="marriage" type="button">
+      <span>❤️</span><span>विवाह मार्गदर्शन</span>
+    </button>
+
+    <button data-page="muhurat" type="button">
+      <span>✦</span><span>मुहूर्त</span>
+    </button>
+
+    <button data-page="education" type="button">
+      <span>🎓</span><span>अध्ययन एवं विद्या</span>
+    </button>
+
+    <button data-page="wealth" type="button">
+      <span>💰</span><span>धन एवं व्यवसाय</span>
+    </button>
+
+    <button data-page="family" type="button">
+      <span>👨‍👩‍👧</span><span>परिवार</span>
+    </button>
+
+    <button data-page="health" type="button">
+      <span>🌿</span><span>स्वास्थ्य</span>
+    </button>
+
+    <button data-page="travel" type="button">
+      <span>✈️</span><span>यात्रा</span>
+    </button>
+
+    <div class="menu-section-title">सेटिंग्स</div>
+
+    <button id="themeSetting" type="button">
+      <span id="themeIcon">🌙</span><span>थीम</span>
+    </button>
+
+    <button id="languageSetting" type="button">
+      <span>🌐</span><span>भाषा</span>
+    </button>
+
+    <button id="menuAccountButton" type="button">
+      <span>👤</span><span>मेरा अकाउंट</span>
+    </button>
+
+    <div class="menu-divider"></div>
+
+    <button id="logoutButton" class="logout-menu-button" type="button">
+      <span>🚪</span><span>लॉगआउट</span>
+    </button>
+
+  </aside>
+
+
+  <!-- =======================================================
+       ACCOUNT DRAWER
+  ======================================================= -->
+
+  <div id="accountOverlay" class="account-overlay"></div>
+
+  <aside id="accountDrawer" class="account-drawer">
+
+    <div class="account-drawer-header">
+
+      <div>
+        <span class="drawer-label">PROFILE</span>
+        <h2>मेरा अकाउंट</h2>
+      </div>
+
+      <button id="closeAccount" class="drawer-close" type="button">×</button>
+
+    </div>
+
+    <div class="account-profile">
+
+      <div id="drawerProfileLetter" class="drawer-profile-letter">U</div>
+
+      <h3 id="drawerAccountName">User</h3>
+
+      <p id="drawerAccountEmail">—</p>
+
+    </div>
+
+    <div class="account-settings-list">
+
+      <div class="account-setting-item">
+        <div class="setting-icon">👤</div>
+        <div class="setting-info">
+          <strong>प्रोफ़ाइल</strong>
+          <small>आपके अकाउंट की जानकारी</small>
+        </div>
+      </div>
+
+      <button
+        id="accountThemeButton"
+        class="account-setting-item clickable"
+        type="button"
+      >
+        <div class="setting-icon">🌙</div>
+        <div class="setting-info">
+          <strong>थीम</strong>
+          <small id="accountThemeText">Light</small>
+        </div>
+        <span class="setting-arrow">›</span>
+      </button>
+
+      <button
+        id="accountLanguageButton"
+        class="account-setting-item clickable"
+        type="button"
+      >
+        <div class="setting-icon">🌐</div>
+        <div class="setting-info">
+          <strong>भाषा</strong>
+          <small id="accountLanguageText">हिन्दी</small>
+        </div>
+        <span class="setting-arrow">›</span>
+      </button>
+
+      <div class="account-setting-item">
+        <div class="setting-icon">🔔</div>
+        <div class="setting-info">
+          <strong>सूचनाएँ</strong>
+          <small>भविष्य में notifications यहाँ आएँगी</small>
+        </div>
+      </div>
+
+    </div>
+
+    <button id="drawerLogoutButton" class="drawer-logout" type="button">
+      🚪 लॉगआउट करें
+    </button>
+
+  </aside>
+
+
+  <!-- =======================================================
+       MAIN CONTENT
+  ======================================================= -->
+
+  <main>
+
+    <!-- =====================================================
+         HOME PAGE
+    ===================================================== -->
+
+    <section id="homePage" class="page active home-page">
+
+      <!-- POSTER FIRST -->
+
+      <section class="hero-section">
+
+        <div class="hero-heading">
+
+          <div class="section-label">TODAY'S GUIDANCE</div>
+
+          <h1>आज का मार्गदर्शन</h1>
+
+          <p>
+            ज्ञान, परंपरा और वैदिक दृष्टि से अपने जीवन को समझने का प्रयास।
+          </p>
+
+        </div>
+
+        <div class="poster-slider">
+
+          <div class="poster-card">
+            <img
+              id="poster1Img" src="./assets/posters/poster1.jpg"
+              alt="आज का पोस्टर"
+              onerror="this.closest('.poster-card').classList.add('poster-error')"
+            >
+            <div class="poster-overlay">
+              <span>TODAY</span>
+              <strong>आज का मार्गदर्शन</strong>
+            </div>
+          </div>
+
+          <div class="poster-card">
+            <img
+              id="poster2Img" src="./assets/posters/poster2.jpg"
+              alt="वैदिक मार्गदर्शन"
+              onerror="this.closest('.poster-card').classList.add('poster-error')"
+            >
+            <div class="poster-overlay">
+              <span>GUIDANCE</span>
+              <strong>वैदिक दृष्टि</strong>
+            </div>
+          </div>
+
+          <div class="poster-card">
+            <img
+              id="poster3Img" src="./assets/posters/poster3.jpg"
+              alt="नक्षत्र ज्योति"
+              onerror="this.closest('.poster-card').classList.add('poster-error')"
+            >
+            <div class="poster-overlay">
+              <span>NAKSHATRA</span>
+              <strong>नक्षत्र ज्योति</strong>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- GUIDANCE CATEGORIES -->
+
+      <section class="guidance-section">
+
+        <div class="section-heading-row">
+
+          <div>
+            <div class="section-label">EXPLORE GUIDANCE</div>
+
+            <h2>आप किस विषय पर मार्गदर्शन चाहते हैं?</h2>
+
+            <p>अपने प्रश्न के अनुसार किसी विषय को चुनें।</p>
+          </div>
+
+        </div>
+
+        <div class="category-grid">
+
+          <button class="category-card category-featured" data-page="career" type="button">
+            <span class="category-icon">💼</span>
+            <span class="category-content">
+              <strong>करियर</strong>
+              <small>नौकरी, व्यवसाय और करियर दिशा</small>
+            </span>
+            <span class="category-arrow">→</span>
+          </button>
+
+          <button class="category-card" data-page="marriage" type="button">
+            <span class="category-icon">❤️</span>
+            <span class="category-content">
+              <strong>विवाह</strong>
+              <small>विवाह एवं संबंध</small>
+            </span>
+            <span class="category-arrow">→</span>
+          </button>
+
+          <button class="category-card" data-page="muhurat" type="button">
+            <span class="category-icon">✦</span>
+            <span class="category-content">
+              <strong>मुहूर्त</strong>
+              <small>शुभ समय और कार्य</small>
+            </span>
+            <span class="category-arrow">→</span>
+          </button>
+
+          <button class="category-card" data-page="education" type="button">
+            <span class="category-icon">🎓</span>
+            <span class="category-content">
+              <strong>अध्ययन एवं विद्या</strong>
+              <small>शिक्षा और अध्ययन मार्गदर्शन</small>
+            </span>
+            <span class="category-arrow">→</span>
+          </button>
+
+          <button class="category-card" data-page="wealth" type="button">
+            <span class="category-icon">💰</span>
+            <span class="category-content">
+              <strong>धन एवं व्यवसाय</strong>
+              <small>आर्थिक दिशा और व्यवसाय</small>
+            </span>
+            <span class="category-arrow">→</span>
+          </button>
+
+          <button class="category-card" data-page="family" type="button">
+            <span class="category-icon">👨‍👩‍👧</span>
+            <span class="category-content">
+              <strong>परिवार</strong>
+              <small>परिवार एवं पारिवारिक विषय</small>
+            </span>
+            <span class="category-arrow">→</span>
+          </button>
+
+          <button class="category-card" data-page="health" type="button">
+            <span class="category-icon">🌿</span>
+            <span class="category-content">
+              <strong>स्वास्थ्य</strong>
+              <small>सामान्य जीवनशैली मार्गदर्शन</small>
+            </span>
+            <span class="category-arrow">→</span>
+          </button>
+
+          <button class="category-card" data-page="travel" type="button">
+            <span class="category-icon">✈️</span>
+            <span class="category-content">
+              <strong>यात्रा</strong>
+              <small>यात्रा और शुभ समय</small>
+            </span>
+            <span class="category-arrow">→</span>
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- QUICK TOOLS -->
+
+      <section class="quick-tools-section">
+
+        <div class="section-label">QUICK ACCESS</div>
+
+        <h2>विशेष सेवाएँ</h2>
+
+        <div class="quick-tools-grid">
+
+          <button data-page="kundli" class="quick-tool" type="button">
+            <span>◉</span>
+            <div>
+              <strong>जन्म कुंडली</strong>
+              <small>जन्म विवरण से शुरुआत करें</small>
+            </div>
+          </button>
+
+          <button data-page="call" class="quick-tool" type="button">
+            <span>☎</span>
+            <div>
+              <strong>आचार्य से संपर्क</strong>
+              <small>व्यक्तिगत मार्गदर्शन के लिए</small>
+            </div>
+          </button>
+
+          <button data-page="messages" class="quick-tool" type="button">
+            <span>💬</span>
+            <div>
+              <strong>संदेश</strong>
+              <small>अपनी बातचीत देखें</small>
+            </div>
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- ACHARYA PREVIEW -->
+
+      <section class="acharya-preview">
+
+        <div class="section-label">PERSONAL GUIDANCE</div>
+
+        <div class="section-heading-row">
+
+          <div>
+            <h2>हमारे आचार्य</h2>
+            <p>आचार्यों से व्यक्तिगत मार्गदर्शन प्राप्त करें।</p>
+          </div>
+
+          <button class="text-link" data-page="acharya" type="button">
+            सभी देखें →
+          </button>
+
+        </div>
+
+        <div class="acharya-grid">
+
+          <article class="acharya-card" data-page="acharya">
+            <div class="acharya-photo">
+              <img src="./assets/acharyas/acharya1.jpg" alt="ज्योतिषाचार्य शुभांशु दुबे">
+            </div>
+            <h3>ज्योतिषाचार्य शुभांशु दुबे</h3>
+            <p>वैदिक ज्योतिष</p>
+          </article>
+
+          <article class="acharya-card" data-page="acharya">
+            <div class="acharya-photo">
+              <img src="./assets/acharyas/acharya2.jpg" alt="श्रीकांत मिश्रा">
+            </div>
+            <h3>श्रीकांत मिश्रा</h3>
+            <p>वैदिक ज्योतिष</p>
+          </article>
+
+          <article class="acharya-card" data-page="acharya">
+            <div class="acharya-photo">
+              <img src="./assets/acharyas/acharya3.jpg" alt="सिद्धांत मिश्रा">
+            </div>
+            <h3>सिद्धांत मिश्रा</h3>
+            <p>परामर्श</p>
+          </article>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ACHARYA VICHAR PREVIEW -->
+      <section class="home-blog-section">
+        <div class="section-label">ACHARYA VICHAR</div>
+        <div class="section-heading-row">
+          <div>
+            <h2>आचार्य विचार</h2>
+            <p>हमारे आचार्यों द्वारा प्रकाशित मार्गदर्शन और लेख।</p>
+          </div>
+          <button class="text-link" data-page="blog" type="button">सभी लेख →</button>
+        </div>
+        <div id="homeBlogPreview" class="blog-grid blog-grid-home">
+          <div class="blog-empty small-blog-empty">
+            <div>📝</div>
+            <p>नए आचार्य लेख जल्द यहाँ दिखाई देंगे।</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-trust-section">
+
+        <div class="trust-item">
+          <span>ॐ</span>
+          <strong>वैदिक दृष्टि</strong>
+          <small>परंपरा आधारित मार्गदर्शन</small>
+        </div>
+
+        <div class="trust-item">
+          <span>✦</span>
+          <strong>व्यक्तिगत ध्यान</strong>
+          <small>आपके प्रश्न के अनुसार</small>
+        </div>
+
+        <div class="trust-item">
+          <span>◉</span>
+          <strong>सुव्यवस्थित सेवा</strong>
+          <small>एक ही स्थान पर अनेक सुविधाएँ</small>
+        </div>
+
+      </section>
+
+    </section>
+
+
+    <!-- =====================================================
+         ACHARYA PAGE
+    ===================================================== -->
+
+    <section id="acharyaPage" class="page">
+
+      <div class="page-heading">
+        <div class="section-label">PERSONAL GUIDANCE</div>
+        <h1>हमारे आचार्य</h1>
+        <p>प्रत्येक आचार्य की योग्यता, विशेषज्ञता और परामर्श की जानकारी।</p>
+      </div>
+
+      <div class="acharya-list">
+
+        <article class="acharya-detail">
+          <img src="./assets/acharyas/acharya1.jpg" alt="ज्योतिषाचार्य शुभांशु दुबे">
+          <div>
+            <h2>ज्योतिषाचार्य शुभांशु दुबे</h2>
+            <p>वैदिक ज्योतिष • जन्म-कुंडली • प्रश्न परामर्श</p>
+            <p><b>योग्यता:</b> यहाँ आचार्य की योग्यता और शिक्षा की जानकारी जोड़ी जाएगी।</p>
+            <p><b>परिचय:</b> यहाँ आचार्य का विस्तृत परिचय जोड़ा जाएगा।</p>
+            <div class="social-buttons">
+              <button type="button">Instagram</button>
+              <button type="button">Facebook</button>
+              <button type="button">मोबाइल</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="acharya-detail">
+          <img src="./assets/acharyas/acharya2.jpg" alt="श्रीकांत मिश्रा">
+          <div>
+            <h2>श्रीकांत मिश्रा</h2>
+            <p>वैदिक ज्योतिष • परामर्श</p>
+            <p><b>योग्यता:</b> यहाँ आचार्य की जानकारी जोड़ी जाएगी।</p>
+            <p><b>परिचय:</b> यहाँ विस्तृत परिचय जोड़ा जाएगा।</p>
+            <div class="social-buttons">
+              <button type="button">Instagram</button>
+              <button type="button">Facebook</button>
+              <button type="button">मोबाइल</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="acharya-detail">
+          <img src="./assets/acharyas/acharya3.jpg" alt="सिद्धांत मिश्रा">
+          <div>
+            <h2>सिद्धांत मिश्रा</h2>
+            <p>वैदिक ज्योतिष • परामर्श</p>
+            <p><b>योग्यता:</b> यहाँ आचार्य की जानकारी जोड़ी जाएगी।</p>
+            <p><b>परिचय:</b> यहाँ विस्तृत परिचय जोड़ा जाएगा।</p>
+            <div class="social-buttons">
+              <button type="button">Instagram</button>
+              <button type="button">Facebook</button>
+              <button type="button">मोबाइल</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CAREER PAGE
+    ===================================================== -->
+
+    <section id="careerPage" class="page service-page">
+
+      <div class="page-heading">
+        <div class="section-label">CAREER GUIDANCE</div>
+        <h1>करियर मार्गदर्शन</h1>
+        <p>नौकरी, व्यवसाय और करियर से जुड़े विषय चुनें।</p>
+      </div>
+
+      <div class="service-grid">
+
+        <button class="service-card" type="button">
+          <span>💼</span>
+          <strong>नौकरी</strong>
+          <small>नौकरी और कार्यक्षेत्र से संबंधित मार्गदर्शन</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>🏢</span>
+          <strong>व्यवसाय</strong>
+          <small>व्यवसाय शुरू करने और दिशा से संबंधित विषय</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>📈</span>
+          <strong>करियर ग्रोथ</strong>
+          <small>करियर में आगे बढ़ने से संबंधित प्रश्न</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>🔄</span>
+          <strong>जॉब परिवर्तन</strong>
+          <small>कार्य परिवर्तन से संबंधित मार्गदर्शन</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>🎯</span>
+          <strong>करियर दिशा</strong>
+          <small>किस क्षेत्र पर ध्यान देना है</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>🏆</span>
+          <strong>प्रतियोगिता</strong>
+          <small>प्रतियोगी परीक्षाओं से संबंधित मार्गदर्शन</small>
+        </button>
+
+      </div>
+
+      <div class="future-module">
+        <span>✦</span>
+        <h3>करियर विश्लेषण</h3>
+        <p>भविष्य में यहाँ कुंडली आधारित विस्तृत career analysis module जोड़ा जाएगा।</p>
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MARRIAGE PAGE
+    ===================================================== -->
+
+    <section id="marriagePage" class="page service-page">
+
+      <div class="page-heading">
+        <div class="section-label">RELATIONSHIP GUIDANCE</div>
+        <h1>विवाह मार्गदर्शन</h1>
+        <p>विवाह और संबंध से जुड़े विषय चुनें।</p>
+      </div>
+
+      <div class="service-grid">
+
+        <button class="service-card" type="button">
+          <span>❤️</span>
+          <strong>विवाह योग</strong>
+          <small>विवाह संबंधी सामान्य ज्योतिषीय विषय</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>🤝</span>
+          <strong>अनुकूलता</strong>
+          <small>दो व्यक्तियों की अनुकूलता से संबंधित विषय</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>💍</span>
+          <strong>विवाह का समय</strong>
+          <small>विवाह समय से संबंधित मार्गदर्शन</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>🌸</span>
+          <strong>विवाह मुहूर्त</strong>
+          <small>शुभ समय की जानकारी</small>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MUHURAT PAGE
+    ===================================================== -->
+
+    <section id="muhuratPage" class="page service-page">
+
+      <div class="page-heading">
+        <div class="section-label">AUSPICIOUS TIMING</div>
+        <h1>मुहूर्त</h1>
+        <p>महत्वपूर्ण कार्यों के लिए शुभ समय से संबंधित सेवाएँ।</p>
+      </div>
+
+      <div class="service-grid">
+
+        <button class="service-card" type="button">
+          <span>🏠</span>
+          <strong>गृह प्रवेश</strong>
+          <small>गृह प्रवेश के शुभ समय की जानकारी</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>💍</span>
+          <strong>विवाह</strong>
+          <small>विवाह मुहूर्त</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>🚗</span>
+          <strong>वाहन</strong>
+          <small>वाहन खरीदने के शुभ समय से संबंधित विषय</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>🏢</span>
+          <strong>व्यवसाय</strong>
+          <small>व्यवसाय प्रारंभ करने का समय</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>📚</span>
+          <strong>विद्यारंभ</strong>
+          <small>शिक्षा प्रारंभ करने से संबंधित शुभ समय</small>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         EDUCATION PAGE
+    ===================================================== -->
+
+    <section id="educationPage" class="page service-page">
+
+      <div class="page-heading">
+        <div class="section-label">EDUCATION GUIDANCE</div>
+        <h1>अध्ययन एवं विद्या</h1>
+        <p>शिक्षा और अध्ययन से जुड़े विषय चुनें।</p>
+      </div>
+
+      <div class="service-grid">
+
+        <button class="service-card" type="button">
+          <span>📚</span>
+          <strong>पढ़ाई</strong>
+          <small>अध्ययन से संबंधित मार्गदर्शन</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>🎓</span>
+          <strong>उच्च शिक्षा</strong>
+          <small>आगे की शिक्षा से संबंधित विषय</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>📝</span>
+          <strong>परीक्षा</strong>
+          <small>परीक्षा और तैयारी से संबंधित विषय</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>🧭</span>
+          <strong>विषय चयन</strong>
+          <small>अध्ययन क्षेत्र चुनने से संबंधित मार्गदर्शन</small>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         WEALTH PAGE
+    ===================================================== -->
+
+    <section id="wealthPage" class="page service-page">
+
+      <div class="page-heading">
+        <div class="section-label">MONEY & BUSINESS</div>
+        <h1>धन एवं व्यवसाय</h1>
+        <p>आर्थिक और व्यवसायिक विषयों के लिए मार्गदर्शन।</p>
+      </div>
+
+      <div class="service-grid">
+
+        <button class="service-card" type="button">
+          <span>💰</span>
+          <strong>आर्थिक दिशा</strong>
+          <small>आर्थिक मामलों से संबंधित सामान्य मार्गदर्शन</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>🏦</span>
+          <strong>बचत एवं योजना</strong>
+          <small>वित्तीय निर्णयों के लिए सामान्य जानकारी</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>🏢</span>
+          <strong>व्यवसाय विस्तार</strong>
+          <small>व्यवसायिक दिशा से संबंधित विषय</small>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FAMILY PAGE
+    ===================================================== -->
+
+    <section id="familyPage" class="page service-page">
+
+      <div class="page-heading">
+        <div class="section-label">FAMILY GUIDANCE</div>
+        <h1>परिवार</h1>
+        <p>परिवार और पारिवारिक जीवन से जुड़े विषय।</p>
+      </div>
+
+      <div class="service-grid">
+
+        <button class="service-card" type="button">
+          <span>👨‍👩‍👧</span>
+          <strong>पारिवारिक संबंध</strong>
+          <small>परिवार से संबंधित सामान्य मार्गदर्शन</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>🏡</span>
+          <strong>गृह जीवन</strong>
+          <small>गृहस्थ जीवन से जुड़े विषय</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>🌼</span>
+          <strong>पारिवारिक शांति</strong>
+          <small>संबंधों और संवाद से संबंधित मार्गदर्शन</small>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         HEALTH PAGE
+    ===================================================== -->
+
+    <section id="healthPage" class="page service-page">
+
+      <div class="page-heading">
+        <div class="section-label">WELLNESS</div>
+        <h1>स्वास्थ्य</h1>
+        <p>यहाँ केवल सामान्य जीवनशैली और कल्याण संबंधी मार्गदर्शन होगा।</p>
+      </div>
+
+      <div class="notice-box">
+        <strong>महत्वपूर्ण सूचना</strong>
+        <p>
+          यह अनुभाग चिकित्सा निदान या उपचार का विकल्प नहीं है।
+          स्वास्थ्य संबंधी समस्या होने पर योग्य डॉक्टर से सलाह लें।
+        </p>
+      </div>
+
+      <div class="service-grid">
+
+        <button class="service-card" type="button">
+          <span>🌿</span>
+          <strong>जीवनशैली</strong>
+          <small>सामान्य wellness guidance</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>🧘</span>
+          <strong>मानसिक शांति</strong>
+          <small>सामान्य तनाव-प्रबंधन और wellbeing विषय</small>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         TRAVEL PAGE
+    ===================================================== -->
+
+    <section id="travelPage" class="page service-page">
+
+      <div class="page-heading">
+        <div class="section-label">TRAVEL</div>
+        <h1>यात्रा</h1>
+        <p>यात्रा और शुभ समय से संबंधित सेवाएँ।</p>
+      </div>
+
+      <div class="service-grid">
+
+        <button class="service-card" type="button">
+          <span>✈️</span>
+          <strong>यात्रा योजना</strong>
+          <small>यात्रा से संबंधित सामान्य मार्गदर्शन</small>
+        </button>
+
+        <button class="service-card" type="button">
+          <span>🧭</span>
+          <strong>यात्रा दिशा</strong>
+          <small>दिशा और समय से संबंधित विषय</small>
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ACHARYA VICHAR / BLOG PAGE
+    ===================================================== -->
+    <section id="blogPage" class="page blog-page">
+      <div class="page-heading">
+        <div class="section-label">ACHARYA VICHAR</div>
+        <h1>आचार्य विचार</h1>
+        <p>आचार्यों के प्रकाशित लेख, वैदिक दृष्टिकोण और मार्गदर्शन।</p>
+      </div>
+
+      <div class="blog-toolbar">
+        <input id="blogSearch" type="search" placeholder="लेख खोजें…">
+        <select id="blogCategoryFilter">
+          <option value="all">सभी श्रेणियाँ</option>
+          <option value="jyotish">ज्योतिष</option>
+          <option value="kundli">कुंडली</option>
+          <option value="muhurat">मुहूर्त</option>
+          <option value="guidance">मार्गदर्शन</option>
+          <option value="other">अन्य</option>
+        </select>
+      </div>
+
+      <div id="blogList" class="blog-grid">
+        <div class="blog-empty">
+          <div>📝</div>
+          <h3>अभी कोई प्रकाशित लेख नहीं है</h3>
+          <p>आचार्य या Super Admin द्वारा लेख प्रकाशित होने के बाद यहाँ दिखाई देंगे।</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         CALL PAGE
+    ===================================================== -->
+
+    <section id="callPage" class="page">
+
+      <div class="page-heading">
+        <div class="section-label">PERSONAL CONSULTATION</div>
+        <h1>कॉल</h1>
+        <p>आचार्य चुनें और उपलब्ध संपर्क माध्यम से संपर्क करें।</p>
+      </div>
+
+      <div class="consultation-grid">
+
+        <article class="consultation-card">
+          <img src="./assets/acharyas/acharya1.jpg" alt="ज्योतिषाचार्य शुभांशु दुबे">
+          <div>
+            <h2>ज्योतिषाचार्य शुभांशु दुबे</h2>
+            <p>वैदिक ज्योतिष • जन्म-कुंडली • प्रश्न परामर्श</p>
+            <div class="consultation-actions">
+              <button type="button">☎ कॉल</button>
+              <button type="button">💬 संदेश</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="consultation-card">
+          <img src="./assets/acharyas/acharya2.jpg" alt="श्रीकांत मिश्रा">
+          <div>
+            <h2>श्रीकांत मिश्रा</h2>
+            <p>वैदिक ज्योतिष • परामर्श</p>
+            <div class="consultation-actions">
+              <button type="button">☎ कॉल</button>
+              <button type="button">💬 संदेश</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="consultation-card">
+          <img src="./assets/acharyas/acharya3.jpg" alt="सिद्धांत मिश्रा">
+          <div>
+            <h2>सिद्धांत मिश्रा</h2>
+            <p>वैदिक ज्योतिष • परामर्श</p>
+            <div class="consultation-actions">
+              <button type="button">☎ कॉल</button>
+              <button type="button">💬 संदेश</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         KUNDLI PAGE
+    ===================================================== -->
+
+    <section id="kundliPage" class="page">
+
+      <div class="page-heading">
+        <div class="section-label">BIRTH CHART</div>
+        <h1>कुंडली</h1>
+        <p>जन्म विवरण भरें और वास्तविक वैदिक कुंडली तैयार करें।</p>
+      </div>
+
+      <div class="kundli-card">
+
+        <div class="form-grid">
+
+          <label>
+            नाम
+            <input id="kundliName" type="text" placeholder="अपना नाम">
+          </label>
+
+          <label>
+            जन्म तारीख
+            <input id="kundliDate" type="date">
+          </label>
+
+          <label>
+            जन्म समय
+            <input id="kundliTime" type="time">
+          </label>
+
+          <label>
+            जन्म स्थान
+            <input id="kundliPlace" type="text" placeholder="शहर / स्थान" autocomplete="off">
+          </label>
+
+          <label class="kundli-coordinate-field">
+            स्थान के निर्देशांक
+            <input id="kundliCoordinates" type="text" placeholder="स्थान खोजने के बाद स्वतः आएगा" readonly>
+          </label>
+
+        </div>
+
+        <div class="kundli-actions">
+          <button id="saveKundliButton" class="primary-button" type="button">
+            विवरण सुरक्षित करें
+          </button>
+          <button id="generateKundliButton" class="secondary-button" type="button">
+            कुंडली तैयार करें
+          </button>
+        </div>
+
+        <div id="kundliResult" class="result-box">
+          <strong>कुंडली सेवा</strong>
+          <p>जन्म विवरण भरें। कुंडली तैयार करने पर Prokerala से वास्तविक परिणाम यहाँ दिखेंगे।</p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MESSAGES PAGE
+    ===================================================== -->
+
+    <section id="messagesPage" class="page">
+
+      <div class="page-heading">
+        <div class="section-label">PRIVATE MESSAGES</div>
+        <h1>संदेश</h1>
+        <p>आपकी निजी बातचीत।</p>
+      </div>
+
+      <div id="messagesList" class="messages-list">
+        <div class="empty-state">
+          <span>💬</span>
+          <h3>संदेश लोड हो रहे हैं…</h3>
+          <p>आपकी निजी बातचीत यहाँ दिखाई देगी।</p>
+        </div>
+      </div>
+
+      <section id="chatWorkspace" class="chat-workspace hidden">
+        <div class="chat-header">
+          <button id="chatBackButton" class="chat-back-button" type="button">←</button>
+          <div class="chat-avatar" id="chatAvatar">आ</div>
+          <div class="chat-header-copy">
+            <strong id="chatTitle">आचार्य</strong>
+            <small id="chatSubtitle">ऑफलाइन</small>
+          </div>
+
+        </div>
+        <div id="chatMessages" class="chat-messages">
+          <div class="chat-empty">
+            <div>ॐ</div>
+            <h3>बातचीत शुरू करें</h3>
+            <p>आपका संदेश केवल बातचीत के प्रतिभागियों के लिए उपलब्ध है।</p>
+          </div>
+        </div>
+        <form id="chatComposer" class="chat-composer">
+          <input id="chatInput" type="text" maxlength="2000" autocomplete="off" placeholder="अपना संदेश लिखें…">
+          <button type="submit">➤</button>
+        </form>
+      </section>
+
+      <section id="aiChatWorkspace" class="ai-chat-workspace hidden">
+        <div class="chat-header">
+          <button id="aiBackButton" class="chat-back-button" type="button">←</button>
+          <div class="chat-avatar">✦</div>
+          <div class="chat-header-copy">
+            <strong>नक्षत्र ज्योति AI</strong>
+            <small>सामान्य वैदिक मार्गदर्शन</small>
+          </div>
+        </div>
+        <div id="aiChatMessages" class="chat-messages"></div>
+        <form id="aiChatComposer" class="chat-composer">
+          <input id="aiChatInput" type="text" maxlength="2000" autocomplete="off" placeholder="AI से अपना प्रश्न पूछें…">
+          <button type="submit">➤</button>
+        </form>
+      </section>
+
+    </section>
+
+
+    <!-- =====================================================
+         ACCOUNT PAGE FALLBACK
+    ===================================================== -->
+
+    <section id="accountPage" class="page simple-page">
+
+      <div class="page-heading">
+        <div class="section-label">PROFILE</div>
+        <h1>मेरा अकाउंट</h1>
+      </div>
+
+      <div class="account-box">
+
+        <div id="bigProfileLetter">U</div>
+
+        <h2 id="accountName">User</h2>
+
+        <p id="accountEmail">—</p>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+<!-- =========================================================
+     NAKSHATRA JYOTI V4 — ROLE-BASED APP SHELL
+     User / Acharya / Super Admin
+========================================================= -->
+<section id="v4RoleShell" class="v4-shell" aria-hidden="true">
+  <div class="v4-topbar">
+    <button id="v4Back" class="v4-icon-btn" type="button" aria-label="Back">←</button>
+    <div class="v4-top-title">
+      <strong id="v4TopTitle">Nakshatra Jyoti</strong>
+      <small id="v4TopSub">वैदिक मार्गदर्शन</small>
+    </div>
+    <button id="v4TopAction" class="v4-icon-btn" type="button" aria-label="Action">⋯</button>
+  </div>
+
+  <div id="v4Pages" class="v4-pages">
+    <!-- USER HOME -->
+    <section id="v4UserHome" class="v4-page">
+      <div class="v4-hero-card">
+        <div class="v4-hero-media">
+          <img id="v4PosterImage" src="./assets/poster.jpg" alt="Nakshatra Jyoti Poster">
+          <div class="v4-hero-overlay">
+            <span class="v4-kicker">NAKSHATRA JYOTI</span>
+            <h1>वैदिक मार्गदर्शन</h1>
+            <p>आपके प्रश्नों के लिए व्यक्तिगत मार्गदर्शन</p>
+          </div>
+        </div>
+      </div>
+
+      <section class="v4-section">
+        <div class="v4-section-head">
+          <div><span class="v4-kicker">GUIDANCE</span><h2>आप किस विषय पर मार्गदर्शन चाहते हैं?</h2></div>
+        </div>
+        <div class="v4-guidance-grid">
+          <button class="v4-choice" data-v4-guidance="career"><span>💼</span><b>करियर</b><small>नौकरी, व्यवसाय और दिशा</small></button>
+          <button class="v4-choice" data-v4-guidance="education"><span>🎓</span><b>शिक्षा</b><small>पढ़ाई और भविष्य की योजना</small></button>
+          <button class="v4-choice" data-v4-guidance="other"><span>🪔</span><b>अन्य मार्गदर्शन</b><small>अपना प्रश्न सीधे भेजें</small></button>
+        </div>
+      </section>
+
+      <section class="v4-section">
+        <div class="v4-section-head">
+          <div><span class="v4-kicker">DAILY</span><h2>आज का राशिफल</h2></div>
+          <button class="v4-text-btn" data-v4-page="rashifal">सभी देखें</button>
+        </div>
+        <div id="v4RashifalPreview" class="v4-zodiac-grid"></div>
+      </section>
+
+      <section class="v4-section">
+        <div class="v4-section-head">
+          <div><span class="v4-kicker">THOUGHTS</span><h2>आज के विचार</h2></div>
+          <button class="v4-text-btn" data-v4-page="posts">सभी विचार</button>
+        </div>
+        <div id="v4PostFeedHome" class="v4-feed"></div>
+      </section>
+    </section>
+
+    <!-- ACHARYA DIRECTORY -->
+    <section id="v4AcharyaDirectory" class="v4-page v4-hidden">
+      <div class="v4-page-heading">
+        <span class="v4-kicker">PANDIT JI</span>
+        <h1>आचार्य</h1>
+        <p>अपने लिए उपयुक्त आचार्य चुनें और निजी रूप से मार्गदर्शन लें।</p>
+      </div>
+      <div id="v4AcharyaList" class="v4-acharya-list"></div>
+    </section>
+
+    <!-- ACHARYA PROFILE -->
+    <section id="v4AcharyaProfile" class="v4-page v4-hidden">
+      <div id="v4AcharyaProfileBody"></div>
+    </section>
+
+    <!-- POSTS -->
+    <section id="v4Posts" class="v4-page v4-hidden">
+      <div class="v4-page-heading">
+        <span class="v4-kicker">THOUGHTS</span>
+        <h1>विचार</h1>
+        <p>आचार्यों के नवीन विचार, फोटो और वीडियो।</p>
+      </div>
+      <div id="v4PostFeed" class="v4-feed"></div>
+    </section>
+
+    <!-- SINGLE POST -->
+    <section id="v4SinglePost" class="v4-page v4-hidden">
+      <div id="v4SinglePostBody"></div>
+    </section>
+
+    <!-- RASHIFAL -->
+    <section id="v4Rashifal" class="v4-page v4-hidden">
+      <div class="v4-page-heading">
+        <span class="v4-kicker">DAILY GUIDANCE</span>
+        <h1>आज का राशिफल</h1>
+        <p>बारहों राशियों का दैनिक फल।</p>
+      </div>
+      <div id="v4RashifalGrid" class="v4-zodiac-grid v4-zodiac-full"></div>
+    </section>
+
+    <!-- USER CONVERSATIONS -->
+    <section id="v4UserInbox" class="v4-page v4-hidden">
+      <div class="v4-page-heading">
+        <span class="v4-kicker">PRIVATE MESSAGES</span>
+        <h1>मेरी बातचीत</h1>
+        <p>आपके और आपके आचार्यों के निजी संदेश।</p>
+      </div>
+      <div id="v4UserConversationList" class="v4-conversation-list"></div>
+    </section>
+
+    <!-- ACHARYA INBOX -->
+    <section id="v4AcharyaInbox" class="v4-page v4-hidden">
+      <div class="v4-page-heading">
+        <span class="v4-kicker">MESSAGES</span>
+        <h1>मेरे संदेश</h1>
+        <p>जिन लोगों ने आपको संदेश भेजा है, उनकी बातचीत यहाँ दिखाई देगी।</p>
+      </div>
+      <div id="v4AcharyaConversationList" class="v4-conversation-list"></div>
+    </section>
+
+    <!-- FULL CHAT -->
+    <section id="v4Chat" class="v4-page v4-hidden v4-chat-page">
+      <div class="v4-chat-head">
+        <button class="v4-icon-btn" data-v4-back-chat type="button">←</button>
+        <img id="v4ChatAvatar" src="./assets/acharyas/acharya1.jpg" alt="">
+        <div class="v4-chat-person">
+          <strong id="v4ChatName">Pandit Ji</strong>
+          <span id="v4ChatStatus">○ Offline</span>
+        </div>
+        <button id="v4MuteButton" class="v4-icon-btn" type="button" title="Mute">🔔</button>
+      </div>
+      <div id="v4ChatMessages" class="v4-chat-messages"></div>
+      <div class="v4-chat-composer">
+        <button id="v4AttachButton" class="v4-plus" type="button">＋</button>
+        <input id="v4FileInput" type="file" hidden accept="image/*,video/*,.pdf,.doc,.docx,.txt">
+        <input id="v4MessageInput" type="text" placeholder="संदेश लिखें..." autocomplete="off">
+        <button id="v4SendButton" class="v4-send" type="button">➤</button>
+      </div>
+      <div id="v4AttachmentMenu" class="v4-attachment-menu v4-hidden">
+        <button data-v4-file="image/*" type="button">📷 फोटो</button>
+        <button data-v4-file="video/*" type="button">🎥 वीडियो</button>
+        <button data-v4-file=".pdf,.doc,.docx,.txt" type="button">📄 फाइल</button>
+      </div>
+    </section>
+
+    <!-- GUIDANCE -->
+    <section id="v4Guidance" class="v4-page v4-hidden">
+      <div class="v4-page-heading">
+        <span class="v4-kicker">GUIDANCE</span>
+        <h1>मार्गदर्शन</h1>
+        <p>अपने प्रश्न भेजें और आचार्य का उत्तर देखें।</p>
+      </div>
+      <div id="v4GuidanceList" class="v4-request-list"></div>
+      <div class="v4-card v4-guidance-form">
+        <h3>नया मार्गदर्शन प्रश्न</h3>
+        <select id="v4GuidanceType">
+          <option value="career">करियर</option>
+          <option value="education">शिक्षा</option>
+          <option value="other">अन्य</option>
+        </select>
+        <textarea id="v4GuidanceText" rows="5" placeholder="अपना प्रश्न लिखें..."></textarea>
+        <button id="v4SendGuidance" class="v4-primary" type="button">मार्गदर्शन भेजें</button>
+      </div>
+    </section>
+
+    <!-- NOTIFICATIONS -->
+    <section id="v4Notifications" class="v4-page v4-hidden">
+      <div class="v4-page-heading">
+        <span class="v4-kicker">UPDATES</span>
+        <h1>सूचनाएँ</h1>
+        <p>महत्वपूर्ण संदेश और आपके activity updates।</p>
+      </div>
+      <div id="v4NotificationsList" class="v4-notification-list"></div>
+    </section>
+
+    <!-- ACHARYA DASHBOARD -->
+    <section id="v4AcharyaDashboard" class="v4-page v4-hidden">
+      <div class="v4-dashboard-hero">
+        <div><span class="v4-kicker">ACHARYA PANEL</span><h1 id="v4AcharyaDashName">आचार्य पैनल</h1><p>आपके profile, विचार, राजफल और messages</p></div>
+        <button class="v4-icon-btn" data-v4-page="notifications" type="button">🔔</button>
+      </div>
+      <div class="v4-dashboard-grid">
+        <button data-v4-page="acharya-inbox" class="v4-dash-card"><span>💬</span><b>मेरे संदेश</b><small>जिन लोगों ने संपर्क किया</small></button>
+        <button data-v4-page="guidance" class="v4-dash-card"><span>📋</span><b>मार्गदर्शन</b><small>नए प्रश्न और जवाब</small></button>
+        <button data-v4-page="posts" class="v4-dash-card"><span>📝</span><b>मेरे विचार</b><small>फोटो/वीडियो पोस्ट</small></button>
+        <button data-v4-page="rashifal" class="v4-dash-card"><span>🔮</span><b>आज का राशिफल</b><small>दैनिक फल अपडेट</small></button>
+        <button data-v4-page="profile-edit" class="v4-dash-card"><span>👤</span><b>मेरी Profile</b><small>फोटो और जानकारी</small></button>
+        <button data-v4-page="notifications" class="v4-dash-card"><span>🔔</span><b>Notifications</b><small>आपकी सूचनाएँ</small></button>
+      </div>
+    </section>
+
+    <!-- ADMIN DASHBOARD -->
+    <section id="v4AdminDashboard" class="v4-page v4-hidden">
+      <div class="v4-dashboard-hero">
+        <div><span class="v4-kicker">ADMINISTRATION</span><h1>Super Admin</h1><p>पूरे Nakshatra Jyoti सिस्टम का नियंत्रण</p></div>
+        <span class="v4-admin-badge">SUPER ADMIN</span>
+      </div>
+      <div class="v4-dashboard-grid">
+        <button data-v4-page="admin-notifications" class="v4-dash-card"><span>📢</span><b>सूचनाएँ भेजें</b><small>Users को official updates</small></button>
+        <button data-v4-page="admin-acharyas" class="v4-dash-card"><span>🕉️</span><b>आचार्य Management</b><small>आचार्य जोड़ें और manage करें</small></button>
+        <button data-v4-page="admin-users" class="v4-dash-card"><span>👥</span><b>Users</b><small>सामान्य accounts</small></button>
+        <button data-v4-page="admin-posts" class="v4-dash-card"><span>📰</span><b>विचार / Posts</b><small>Content management</small></button>
+        <button data-v4-page="admin-guidance" class="v4-dash-card"><span>📋</span><b>Guidance</b><small>Requests overview</small></button>
+        <button data-v4-page="admin-settings" class="v4-dash-card"><span>⚙️</span><b>Settings</b><small>System controls</small></button>
+      </div>
+    </section>
+
+    <!-- ADMIN NOTIFICATIONS -->
+    <section id="v4AdminNotifications" class="v4-page v4-hidden">
+      <div class="v4-page-heading"><span class="v4-kicker">SUPER ADMIN</span><h1>सूचना भेजें</h1><p>सामान्य Users के notification center में सूचना भेजें।</p></div>
+      <div class="v4-card">
+        <input id="v4AdminNoticeTitle" placeholder="सूचना का शीर्षक">
+        <textarea id="v4AdminNoticeBody" rows="6" placeholder="सूचना लिखें..."></textarea>
+        <label class="v4-check"><input id="v4AdminNoticePush" type="checkbox" checked> Publish होते ही notification बनाएं</label>
+        <button id="v4PublishNotice" class="v4-primary" type="button">📢 Publish Notification</button>
+      </div>
+    </section>
+
+    <!-- PROFILE EDIT -->
+    <section id="v4ProfileEdit" class="v4-page v4-hidden">
+      <div class="v4-page-heading"><span class="v4-kicker">PROFILE</span><h1>मेरी Profile</h1><p>अपनी public profile अपडेट करें।</p></div>
+      <div class="v4-card v4-profile-editor">
+        <img id="v4ProfilePreview" src="./assets/acharyas/acharya1.jpg" alt="">
+        <input id="v4ProfileFile" type="file" accept="image/*">
+        <input id="v4ProfileName" placeholder="नाम">
+        <input id="v4ProfileSpeciality" placeholder="Speciality">
+        <input id="v4ProfileQualification" placeholder="Qualification">
+        <textarea id="v4ProfileBio" rows="5" placeholder="Bio"></textarea>
+        <button id="v4SaveProfile" class="v4-primary" type="button">💾 Save Profile</button>
+      </div>
+    </section>
+
+    <!-- ADMIN ACHARYA MANAGEMENT -->
+    <section id="v4AdminAcharyas" class="v4-page v4-hidden">
+      <div class="v4-page-heading"><span class="v4-kicker">MANAGEMENT</span><h1>आचार्य Management</h1><p>Super Admin द्वारा आचार्य profiles और UID manage करें।</p></div>
+      <div id="v4AdminAcharyaList" class="v4-admin-list"></div>
+    </section>
+
+    <section id="v4AdminPosts" class="v4-page v4-hidden">
+      <div class="v4-page-heading"><span class="v4-kicker">CONTENT</span><h1>विचार / Posts</h1><p>Published posts का overview।</p></div>
+      <div id="v4AdminPostList" class="v4-admin-list"></div>
+    </section>
+
+    <section id="v4AdminUsers" class="v4-page v4-hidden">
+      <div class="v4-page-heading"><span class="v4-kicker">USERS</span><h1>Users</h1><p>सामान्य user accounts का overview।</p></div>
+      <div id="v4AdminUserList" class="v4-admin-list"></div>
+    </section>
+
+    <section id="v4AdminGuidance" class="v4-page v4-hidden">
+      <div class="v4-page-heading"><span class="v4-kicker">GUIDANCE</span><h1>Guidance Overview</h1><p>आ रहे guidance requests का overview।</p></div>
+      <div id="v4AdminGuidanceList" class="v4-admin-list"></div>
+    </section>
+
+    <section id="v4AdminSettings" class="v4-page v4-hidden">
+      <div class="v4-page-heading"><span class="v4-kicker">SETTINGS</span><h1>System Settings</h1><p>Application controls और account settings।</p></div>
+      <div class="v4-card">
+        <div class="v4-setting-row"><span>Message notifications</span><button class="v4-toggle active" data-v4-toggle="messages">ON</button></div>
+        <div class="v4-setting-row"><span>Post notifications</span><button class="v4-toggle active" data-v4-toggle="posts">ON</button></div>
+        <div class="v4-setting-row"><span>Guidance notifications</span><button class="v4-toggle active" data-v4-toggle="guidance">ON</button></div>
+      </div>
+    </section>
+  </div>
+
+  <nav class="v4-role-nav" id="v4RoleNav">
+    <button data-v4-home type="button"><span>⌂</span><small>होम</small></button>
+    <button data-v4-acharyas type="button"><span>ॐ</span><small>आचार्य</small></button>
+    <button data-v4-messages type="button"><span>💬</span><small>संदेश</small><em id="v4MessageBadge" class="v4-badge">0</em></button>
+    <button data-v4-notifications type="button"><span>🔔</span><small>सूचनाएँ</small><em id="v4NotificationBadge" class="v4-badge">0</em></button>
+    <button data-v4-account type="button"><span>☰</span><small>अधिक</small></button>
+  </nav>
+</section>
+
+
+  <!-- =======================================================
+       BOTTOM NAVIGATION
+  ======================================================= -->
+
+  <nav class="bottom-nav">
+
+    <button data-page="home" class="nav-active" type="button">
+      <span>⌂</span>
+      <small>होम</small>
+    </button>
+
+    <button data-page="acharya" type="button">
+      <span>ॐ</span>
+      <small>आचार्य</small>
+    </button>
+
+    <button data-page="call" type="button">
+      <span class="call-circle">☎</span>
+      <small>कॉल</small>
+    </button>
+
+    <button data-page="kundli" type="button">
+      <span>◉</span>
+      <small>कुंडली</small>
+    </button>
+
+    <button data-page="messages" type="button">
+      <span class="bottom-nav-icon-with-badge">
+        <span>💬</span>
+        <span class="message-badge bottom-message-badge" style="display:none">0</span>
+      </span>
+      <small>संदेश</small>
+    </button>
+
+  </nav>
+
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script type="module" src="./script.js"></script>
+<script type="module" src="./v4-app.js"></script>
+
+</body>
+</html>

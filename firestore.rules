@@ -1,0 +1,102 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isAdmin() {
+      return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+    function isAcharya() {
+      return signedIn() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'acharya';
+    }
+    function isParticipant(data) {
+      return signedIn() && request.auth.uid in data.participantUids;
+    }
+
+    match /admins/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow create, update, delete: if isAdmin() && request.auth.uid != uid;
+    }
+
+    match /users/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow create: if signedIn() && ((request.auth.uid == uid && request.resource.data.role == 'user') || isAdmin());
+      allow update: if signedIn() && ((request.auth.uid == uid && request.resource.data.role == resource.data.role) || isAdmin());
+    }
+
+    match /presence/{uid} {
+      allow read: if signedIn();
+      allow create, update: if signedIn() && request.auth.uid == uid;
+    }
+
+    match /acharyas/{id} {
+      allow read: if signedIn();
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /acharyas/{id}/posts/{postId} {
+      allow read: if signedIn();
+    }
+
+    match /posts/{postId} {
+      allow read: if signedIn();
+      allow create: if signedIn() && (isAdmin() || isAcharya());
+      allow update, delete: if signedIn() && (isAdmin() || resource.data.authorUid == request.auth.uid);
+    }
+
+    match /posts/{postId}/likes/{uid} {
+      allow read: if signedIn();
+      allow create, delete: if signedIn() && request.auth.uid == uid;
+    }
+
+    match /posts/{postId}/comments/{commentId} {
+      allow read: if signedIn();
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if signedIn() && resource.data.uid == request.auth.uid;
+    }
+
+    match /conversations/{conversationId} {
+      allow read: if isAdmin() || isParticipant(resource.data);
+      allow create: if signedIn() && request.auth.uid in request.resource.data.participantUids && request.resource.data.userId != request.auth.uid || isAdmin();
+      allow update: if isAdmin() || isParticipant(resource.data);
+      allow delete: if isAdmin() || isParticipant(resource.data);
+
+      match /messages/{messageId} {
+        allow read: if isAdmin() || isParticipant(get(/databases/$(database)/documents/conversations/$(conversationId)).data);
+        allow create: if signedIn() && (isAdmin() || isParticipant(get(/databases/$(database)/documents/conversations/$(conversationId)).data));
+        allow update, delete: if isAdmin();
+      }
+    }
+
+    match /guidanceRequests/{id} {
+      allow read: if signedIn() && (isAdmin() || isAcharya() || resource.data.userId == request.auth.uid);
+      allow create: if signedIn() && request.resource.data.userId == request.auth.uid;
+      allow update: if signedIn() && (isAdmin() || isAcharya() || resource.data.userId == request.auth.uid);
+      allow delete: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
+    }
+
+    match /notifications/{id} {
+      allow read, update: if signedIn() && (resource.data.recipientUid == request.auth.uid || isAdmin());
+      allow create: if signedIn() && ((isAdmin() || isAcharya()) || (request.resource.data.recipientUid == request.auth.uid));
+    }
+
+    match /notificationReads/{id} {
+      allow read: if signedIn() && resource.data.uid == request.auth.uid;
+      allow create, update: if signedIn() && request.resource.data.uid == request.auth.uid;
+    }
+
+    match /rashifal/{id} {
+      allow read: if signedIn();
+      allow create, update: if isAdmin() || isAcharya();
+      allow delete: if isAdmin() || (isAcharya() && resource.data.authorUid == request.auth.uid);
+    }
+
+    match /savedKundli/{id} {
+      allow read, create, update, delete: if signedIn() && request.auth.uid == resource.data.uid || signedIn() && request.auth.uid == request.resource.data.uid;
+    }
+
+    match /{document=**} {
+      allow read: if false;
+      allow write: if false;
+    }
+  }
+}
