@@ -1,0 +1,197 @@
+rules_version = '2';
+
+// =========================================================
+// NAKSHATRA JYOTI — Firestore Security Rules
+//
+// Paste this into Firebase Console → Firestore Database →
+// Rules, and click Publish. Covers every collection the app
+// (index.html / script.js) reads or writes:
+//   users, admins, acharyas, posts (+comments), postLikes,
+//   settings, guidanceRequests, notifications,
+//   notificationReads, presence, conversations (+messages),
+//   savedKundli
+// =========================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- helpers ----------
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isSelf(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    // Authoritative admin marker — admins/{uid} docs are created
+    // manually in the console, never from the app.
+    function isAdmin() {
+      return isSignedIn() &&
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Matches how the app itself decides "acharya": the
+    // users/{uid}.role field (set by Admin when adding an Acharya).
+    function isAcharya() {
+      return isSignedIn() &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "acharya";
+    }
+
+    function isStaff() {
+      return isAdmin() || isAcharya();
+    }
+
+
+    // ---------- users/{uid} ----------
+    // Profile + role. Self-serve create/update, but a normal
+    // user can never change their own `role` field (prevents
+    // client-side privilege escalation to acharya/admin).
+    match /users/{uid} {
+      allow read: if isSelf(uid) || isAdmin();
+      allow create: if isSelf(uid) && request.resource.data.role == "user";
+      allow update: if isAdmin() ||
+        (isSelf(uid) && request.resource.data.role == resource.data.role);
+      allow delete: if false;
+    }
+
+
+    // ---------- admins/{uid} ----------
+    // Managed only from the Firebase console — never written
+    // by the client app.
+    match /admins/{uid} {
+      allow read: if isSelf(uid);
+      allow write: if false;
+    }
+
+
+    // ---------- acharyas/{id} ----------
+    // Public profile cards + the special "__siteSettings" doc
+    // (home posters). Publicly readable, Admin-only writable.
+    match /acharyas/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+
+    // ---------- posts/{id} (विचार / लेख) ----------
+    // Public can read published posts; authors can read/manage
+    // their own (incl. drafts); Admin can read/manage everything.
+    match /posts/{postId} {
+      allow read: if resource.data.published == true ||
+        isAdmin() ||
+        (isSignedIn() && resource.data.authorUid == request.auth.uid);
+
+      allow create: if isStaff() &&
+        request.resource.data.authorUid == request.auth.uid;
+
+      allow update, delete: if isAdmin() ||
+        (isSignedIn() && resource.data.authorUid == request.auth.uid);
+
+      match /comments/{commentId} {
+        allow read: if true;
+        allow create: if isSignedIn() &&
+          request.resource.data.userUid == request.auth.uid;
+        allow update, delete: if isAdmin();
+      }
+    }
+
+
+    // ---------- postLikes/{uid} ----------
+    // One doc per user holding the array of post ids they liked.
+    match /postLikes/{uid} {
+      allow read, write: if isSelf(uid);
+    }
+
+
+    // ---------- settings/{docId} ----------
+    // Currently just settings/rashifal. Public read, Staff write.
+    match /settings/{docId} {
+      allow read: if true;
+      allow write: if isStaff();
+    }
+
+
+    // ---------- guidanceRequests/{id} ----------
+    // A user creates their own request (must start "open").
+    // Any Staff member (Admin/Acharya) can read the full queue
+    // and answer. The requester can read their own regardless.
+    match /guidanceRequests/{reqId} {
+      allow read: if isStaff() ||
+        (isSignedIn() && resource.data.userUid == request.auth.uid);
+
+      allow create: if isSignedIn() &&
+        request.resource.data.userUid == request.auth.uid &&
+        request.resource.data.status == "open";
+
+      allow update: if isStaff();
+      allow delete: if isAdmin();
+    }
+
+
+    // ---------- notifications/{id} ----------
+    // Only Staff can create notifications (broadcast "all" is
+    // Admin-only). Anyone can read a notification addressed to
+    // "all", to "acharyas" (if they are one), or to their own uid.
+    match /notifications/{notifId} {
+      allow read: if isSignedIn() && (
+        resource.data.audience == "all" ||
+        resource.data.audience == request.auth.uid ||
+        (resource.data.audience == "acharyas" && isAcharya())
+      );
+
+      allow create: if isStaff() &&
+        (request.resource.data.audience != "all" || isAdmin());
+
+      allow update, delete: if isAdmin();
+    }
+
+    // Per-user "which notification ids have I read" doc.
+    match /notificationReads/{uid} {
+      allow read, write: if isSelf(uid);
+    }
+
+
+    // ---------- presence/{uid} ----------
+    // Anyone signed in can check someone else's online status;
+    // only the owner can write their own heartbeat.
+    match /presence/{uid} {
+      allow read: if isSignedIn();
+      allow write: if isSelf(uid);
+    }
+
+
+    // ---------- conversations/{id} + messages ----------
+    match /conversations/{conversationId} {
+      allow read: if isAdmin() ||
+        (isSignedIn() && request.auth.uid in resource.data.participantUids);
+
+      allow create: if isSignedIn() &&
+        request.auth.uid in request.resource.data.participantUids;
+
+      allow update: if isAdmin() ||
+        (isSignedIn() && request.auth.uid in resource.data.participantUids);
+
+      allow delete: if isAdmin();
+
+      match /messages/{messageId} {
+        allow read: if isAdmin() || (isSignedIn() &&
+          request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.participantUids);
+
+        allow create: if isSignedIn() &&
+          request.resource.data.senderUid == request.auth.uid &&
+          request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.participantUids;
+
+        allow update, delete: if false;
+      }
+    }
+
+
+    // ---------- savedKundli/{uid} ----------
+    match /savedKundli/{uid} {
+      allow read, write: if isSelf(uid);
+    }
+
+  }
+}
