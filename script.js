@@ -3809,18 +3809,13 @@ function initializePosterAutoSlide() {
             cards.length;
 
 
-          cards[index]
-            ?.scrollIntoView({
-              behavior:
-                "smooth",
-              block:
-                "nearest",
-              inline:
-                "center"
-            });
+          slider.scrollTo({
+  left: cards[index].offsetLeft,
+  behavior: "smooth"
+});
 
         },
-        5000
+        3000
       );
 
   }
