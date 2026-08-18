@@ -3819,7 +3819,7 @@ function initializePosterAutoSlide() {
 });
 
         },
-        2000
+        7000
       );
 
   }
