@@ -1590,19 +1590,26 @@
   let nakshatraYoutubePlayer = null;
 
   function onYouTubeIframeAPIReady() {
-    const id =  NAKSHATRA_YOUTUBE_VIDEO_ID.trim();
-    const playerEl = document.getElementById("youtubePlayer");
-    const placeholder = document.getElementById("youtubePlayerPlaceholder");
+  const id = NAKSHATRA_YOUTUBE_VIDEO_ID.trim();
 
-    if (!id || !playerEl) return;
+  const playerEl = document.getElementById("youtubePlayer");
+  const placeholder = document.getElementById("youtubePlayerPlaceholder");
 
-    playerEl.hidden = false;
-    if (placeholder) placeholder.hidden = true;
+  if (!id || !playerEl) return;
 
-    nakshatraYoutubePlayer = new YT.Player("youtubePlayer", {
-      videoId: id,
-      playerVars: { rel: 0, playsinline: 1 }
-    });
+  playerEl.hidden = false;
+
+  if (placeholder) {
+    placeholder.hidden = true;
+  }
+
+  nakshatraYoutubePlayer = new YT.Player("youtubePlayer", {
+    videoId: id,
+    playerVars: {
+      rel: 0,
+      playsinline: 1
+    }
+  });
   }
 </script>
 
