@@ -1,0 +1,33 @@
+{
+  "name": "Nakshatra Jyoti",
+  "short_name": "Nakshatra Jyoti",
+  "description": "वैदिक मार्गदर्शन, ज्योतिष और व्यक्तिगत परामर्श",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fff7e8",
+  "theme_color": "#d92858",
+  "lang": "hi",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
